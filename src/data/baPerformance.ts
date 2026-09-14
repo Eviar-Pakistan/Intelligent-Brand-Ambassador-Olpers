@@ -1,0 +1,183 @@
+import generated from './baPerformance.generated.json'
+
+/** Towns in source data outside the Tapal Tea programme scope */
+const EXCLUDED_TOWNS = new Set(['Daska', 'Muridke'])
+
+export type BaPerformanceRecord = {
+  town: string
+  month: string
+  store: string
+  customersIntercepted: number
+  productiveCalls: number
+  targetKg: number
+  salesKg: number
+  danedarSales: number
+  familyPackSales: number
+  teaBagSales: number
+  weekSales: { week: number; sales: number }[]
+  skuSales: { sku: string; sales: number }[]
+}
+
+export const baPerformanceTowns = (generated.towns as string[]).filter((t) => !EXCLUDED_TOWNS.has(t))
+export const baPerformanceMonths = generated.months as string[]
+export const baPerformanceStoresByTown = Object.fromEntries(
+  Object.entries(generated.storesByTown as Record<string, string[]>).filter(
+    ([town]) => !EXCLUDED_TOWNS.has(town),
+  ),
+)
+export const baPerformanceRecords = (generated.records as BaPerformanceRecord[]).filter(
+  (r) => !EXCLUDED_TOWNS.has(r.town),
+)
+
+export type BaPerformanceFilters = {
+  town: string | null
+  month: string | null
+  store: string | null
+}
+
+export type BaPerformanceAggregate = {
+  customersIntercepted: number
+  productiveCalls: number
+  productivePct: number
+  targetKg: number
+  salesKg: number
+  achievementPct: number
+  categorySales: { name: string; value: number }[]
+  townTargetVsSales: { town: string; target: number; sales: number }
+  weekSales: { week: number; sales: number }[]
+  topStores: { store: string; sales: number }[]
+  topSkus: { sku: string; sales: number }[]
+}
+
+export function getStoresForTown(town: string | null, month?: string | null) {
+  const towns = town ? [town] : baPerformanceTowns
+  const storeSet = new Set<string>()
+  for (const t of towns) {
+    for (const s of baPerformanceStoresByTown[t] ?? []) storeSet.add(s)
+  }
+  const stores = [...storeSet].sort()
+  if (!month) {
+    if (!town) {
+      // All towns + all months: any store that appears in records
+      const active = new Set(
+        baPerformanceRecords.filter((r) => r.store !== '__ALL__').map((r) => r.store),
+      )
+      return stores.filter((s) => active.has(s))
+    }
+    return stores
+  }
+  const active = new Set(
+    baPerformanceRecords
+      .filter(
+        (r) =>
+          (!town || r.town === town) &&
+          r.month === month &&
+          r.store !== '__ALL__',
+      )
+      .map((r) => r.store),
+  )
+  return stores.filter((s) => active.has(s))
+}
+
+export function filterBaPerformanceRecords(filters: BaPerformanceFilters) {
+  return baPerformanceRecords.filter((r) => {
+    if (filters.town && r.town !== filters.town) return false
+    if (filters.month && r.month !== filters.month) return false
+    if (r.store === '__ALL__') return false
+    if (filters.store && r.store !== filters.store) return false
+    return true
+  })
+}
+
+function emptyAggregate(townLabel: string): BaPerformanceAggregate {
+  return {
+    customersIntercepted: 0,
+    productiveCalls: 0,
+    productivePct: 0,
+    targetKg: 0,
+    salesKg: 0,
+    achievementPct: 0,
+    categorySales: [],
+    townTargetVsSales: { town: townLabel, target: 0, sales: 0 },
+    weekSales: [],
+    topStores: [],
+    topSkus: [],
+  }
+}
+
+export function aggregateBaPerformance(
+  records: BaPerformanceRecord[],
+  town: string | null,
+  month?: string | null,
+): BaPerformanceAggregate {
+  const townLabel = town ?? 'All towns'
+
+  if (records.length === 0) {
+    if (town && month) {
+      const summary = baPerformanceRecords.find(
+        (r) => r.town === town && r.month === month && r.store === '__ALL__',
+      )
+      if (summary) return aggregateBaPerformance([{ ...summary, store: 'Summary' }], town, month)
+    }
+    return emptyAggregate(townLabel)
+  }
+
+  const customersIntercepted = records.reduce((s, r) => s + r.customersIntercepted, 0)
+  const productiveCalls = records.reduce((s, r) => s + r.productiveCalls, 0)
+  const targetKg = Math.round(records.reduce((s, r) => s + r.targetKg, 0))
+  const salesKg = Math.round(records.reduce((s, r) => s + r.salesKg, 0) * 10) / 10
+  const danedar = Math.round(records.reduce((s, r) => s + r.danedarSales, 0) * 10) / 10
+  const familyPack = Math.round(records.reduce((s, r) => s + r.familyPackSales, 0) * 10) / 10
+  const teaBags = Math.round(records.reduce((s, r) => s + r.teaBagSales, 0) * 10) / 10
+
+  const weekMap = new Map<number, number>()
+  for (const r of records) {
+    for (const w of r.weekSales) {
+      weekMap.set(w.week, (weekMap.get(w.week) ?? 0) + w.sales)
+    }
+  }
+  const weekSales = [...weekMap.entries()]
+    .sort((a, b) => a[0] - b[0])
+    .map(([week, sales]) => ({ week, sales: Math.round(sales * 10) / 10 }))
+
+  const storeMap = new Map<string, number>()
+  for (const r of records) {
+    storeMap.set(r.store, (storeMap.get(r.store) ?? 0) + r.salesKg)
+  }
+  const topStores = [...storeMap.entries()]
+    .map(([store, sales]) => ({ store, sales: Math.round(sales * 10) / 10 }))
+    .sort((a, b) => b.sales - a.sales)
+    .slice(0, 5)
+
+  const skuMap = new Map<string, number>()
+  for (const r of records) {
+    for (const sku of r.skuSales) {
+      skuMap.set(sku.sku, (skuMap.get(sku.sku) ?? 0) + sku.sales)
+    }
+  }
+  const topSkus = [...skuMap.entries()]
+    .map(([sku, sales]) => ({ sku, sales: Math.round(sales * 10) / 10 }))
+    .sort((a, b) => b.sales - a.sales)
+    .slice(0, 5)
+
+  return {
+    customersIntercepted,
+    productiveCalls,
+    productivePct:
+      customersIntercepted > 0
+        ? Math.round((productiveCalls / customersIntercepted) * 100)
+        : 0,
+    targetKg,
+    salesKg,
+    achievementPct: targetKg > 0 ? Math.round((salesKg / targetKg) * 100) : 0,
+    categorySales: [
+      { name: 'DANEDAR', value: danedar },
+      { name: 'FAMILY PACK', value: familyPack },
+      { name: 'TEA BAGS', value: teaBags },
+    ],
+    townTargetVsSales: { town: townLabel, target: targetKg, sales: salesKg },
+    weekSales,
+    topStores,
+    topSkus,
+  }
+}

@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@theme {
+  /* Tapal — red chrome (maps onto existing navy-* / brand-* classes) */
+  --color-navy-950: #450a0a;
+  --color-navy-900: #991b1b;
+  --color-navy-800: #b91c1c;
+  --color-navy-700: #dc2626;
+
+  --color-brand-50: #fef2f2;
+  --color-brand-100: #fee2e2;
+  --color-brand-400: #f87171;
+  --color-brand-500: #dc2626;
+  --color-brand-600: #b91c1c;
+  --color-brand-700: #991b1b;
+
+  --color-gold-400: #fde68a;
+  --color-gold-500: #fbbf24;
+  --color-gold-600: #d97706;
+
+  --color-success: #b91c1c;
+  --color-warning: #fbbf24;
+  --color-danger: #dc2626;
+  --color-surface: #faf5f5;
+  --color-card: #ffffff;
+  --font-sans: "Segoe UI", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Segoe UI Semibold", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  min-height: 100dvh;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--color-surface);
+  color: #0f172a;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.safe-top {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin-wheel {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(1440deg);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.35s ease-out both;
+}
+
+.animate-spin-wheel {
+  animation: spin-wheel 2.4s cubic-bezier(0.15, 0.7, 0.1, 1) forwards;
+}
+
+/* Soft gold + red accents for branded panels */
+.tapal-glow {
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(251, 191, 36, 0.28), transparent 42%),
+    radial-gradient(circle at 85% 75%, rgba(185, 28, 28, 0.35), transparent 45%);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e7b4b4;
+  border-radius: 999px;
+}
