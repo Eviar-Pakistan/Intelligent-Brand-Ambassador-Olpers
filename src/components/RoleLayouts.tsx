@@ -5,6 +5,7 @@ import {
   Trophy,
   ArrowLeft,
   LogOut,
+  MessageSquareWarning,
 } from 'lucide-react'
 import { useEffect } from 'react'
 import { useRole, type Role } from '../context/AppContext'
@@ -24,6 +25,7 @@ export function RoleSync({ role }: { role: Role }) {
 const baTabs = [
   { to: '/ba/home', label: 'Home', icon: Home, end: true },
   { to: '/ba/training', label: 'Training', icon: GraduationCap },
+  { to: '/ba/complaint', label: 'Complaint', icon: MessageSquareWarning },
   { to: '/ba/performance', label: 'Rewards', icon: Trophy },
 ]
 

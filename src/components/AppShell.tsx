@@ -18,6 +18,7 @@ import {
   Banknote,
   Menu,
   X,
+  MessageSquareWarning,
   type LucideIcon,
 } from 'lucide-react'
 import { roleMeta, useDemo, useRole, type Role } from '../context/AppContext'
@@ -40,6 +41,7 @@ const headOfficeNav: NavItem[] = [
   { to: '/ho/ambassadors', label: 'Ambassadors', icon: Users, section: 'Operations' },
   { to: '/ho/stores', label: 'Stores', icon: Store, section: 'Operations' },
   { to: '/ho/deployment', label: 'Deployment', icon: Map, section: 'Operations' },
+  { to: '/ho/complaints', label: 'Complaint Center', icon: MessageSquareWarning, section: 'Operations' },
   { to: '/ho/consumers', label: 'Consumers', icon: ShoppingBag, section: 'Intelligence' },
   { to: '/ho/optimization', label: 'AI Optimization', icon: Brain, section: 'Intelligence' },
   { to: '/ho/leaderboard', label: 'Leaderboard', icon: Trophy, section: 'Intelligence' },
@@ -95,6 +97,7 @@ const titles: Record<string, string> = {
   '/ho/ambassadors/training': 'Training Content',
   '/ho/stores': 'Store Management',
   '/ho/deployment': 'Intelligent Deployment',
+  '/ho/complaints': 'Complaint Center',
   '/ho/consumers': 'Consumer Intelligence',
   '/ho/optimization': 'AI Optimization',
   '/ho/leaderboard': 'Ambassador Leaderboard',

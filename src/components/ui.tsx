@@ -120,6 +120,9 @@ export function StatusBadge({ status }: { status: string }) {
     Completed: 'bg-emerald-50 text-emerald-700 ring-emerald-200',
     Missed: 'bg-rose-50 text-rose-700 ring-rose-200',
     Cancelled: 'bg-slate-100 text-slate-600 ring-slate-200',
+    Open: 'bg-rose-50 text-rose-700 ring-rose-200',
+    'In Review': 'bg-amber-50 text-amber-700 ring-amber-200',
+    Resolved: 'bg-emerald-50 text-emerald-700 ring-emerald-200',
   }
   return (
     <span

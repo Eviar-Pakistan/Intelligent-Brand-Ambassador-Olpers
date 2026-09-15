@@ -20,6 +20,7 @@ import {
   SettingsPage,
 } from './pages/headOffice/IntelligencePages'
 import { IncentivesPage } from './pages/headOffice/IncentivesPage'
+import { ComplaintsPage } from './pages/headOffice/ComplaintPages'
 import {
   AttendancePage,
   CoveragePage,
@@ -31,6 +32,8 @@ import {
   BaTrainingPage,
 } from './pages/ba/BaPages'
 import { BaDailySalesPage, BaOtherBrandsPage, BaStockReportPage } from './pages/ba/BaCheckoutPages'
+import { BaComplaintPage } from './pages/ba/BaComplaintPage'
+import { ComplaintsProvider } from './context/ComplaintsContext'
 import {
   ShopperAiPage,
   ShopperFeedbackPage,
@@ -58,6 +61,7 @@ const hoPages = (
     <Route path="optimization" element={<OptimizationPage />} />
     <Route path="leaderboard" element={<LeaderboardPage />} />
     <Route path="incentives" element={<IncentivesPage />} />
+    <Route path="complaints" element={<ComplaintsPage />} />
     <Route path="reports" element={<ReportPage />} />
   </>
 )
@@ -67,6 +71,7 @@ export default function App() {
     <BrandProvider>
       <RoleProvider>
         <DemoProvider>
+          <ComplaintsProvider>
           <ScheduleProvider>
           <TrainingContentProvider>
           <BrowserRouter>
@@ -108,6 +113,7 @@ export default function App() {
               <Route path="home" element={<BaHomePage />} />
               <Route path="training" element={<BaTrainingPage />} />
               <Route path="performance" element={<BaPerformancePage />} />
+              <Route path="complaint" element={<BaComplaintPage />} />
               <Route path="daily-sales" element={<BaDailySalesPage />} />
               <Route path="stock-report" element={<BaStockReportPage />} />
               <Route path="other-brands" element={<BaOtherBrandsPage />} />
@@ -132,6 +138,7 @@ export default function App() {
           </BrowserRouter>
           </TrainingContentProvider>
           </ScheduleProvider>
+          </ComplaintsProvider>
         </DemoProvider>
       </RoleProvider>
     </BrandProvider>
