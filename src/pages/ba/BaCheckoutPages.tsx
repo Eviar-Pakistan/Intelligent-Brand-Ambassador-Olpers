@@ -2,76 +2,21 @@ import { useMemo, useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, CheckCircle2 } from 'lucide-react'
 import { useBaShift } from '../../context/BaShiftContext'
-
-type FieldDef = { key: string; label: string }
-
-const interceptionFields: FieldDef[] = [
-  { key: 'totalInterceptions', label: 'Total Interceptions' },
-  { key: 'productiveCalls', label: 'Productive Calls' },
-  { key: 'nonProductiveCalls', label: 'Non-Productive Calls' },
-  { key: 'totalSalesKg', label: 'Total Sales (Kg)' },
-]
-
-const competitiveFields: FieldDef[] = [
-  { key: 'lipton', label: 'Lipton' },
-  { key: 'vital', label: 'Vital' },
-  { key: 'supreme', label: 'Supreme' },
-  { key: 'others', label: 'Others' },
-]
-
-const whyNotFields: FieldDef[] = [
-  { key: 'taste', label: 'Taste' },
-  { key: 'price', label: 'Price' },
-  { key: 'packaging', label: 'Packaging' },
-]
-
-const danedarSalesFields: FieldDef[] = [
-  { key: 'danedar90', label: 'Danedar 90g' },
-  { key: 'danedar190', label: 'Danedar 190g' },
-  { key: 'danedar475', label: 'Danedar 475g' },
-  { key: 'danedar900', label: 'Danedar 900g' },
-  { key: 'familyPack900', label: 'Family Pack 900g' },
-  { key: 'familyCarton5', label: 'Family Carton 5x475g' },
-  { key: 'bulkTea25', label: 'Bulk Tea 2.5kg' },
-  { key: 'salesDanedar', label: 'Sales-Danedar (Kg)' },
-]
-
-const teaBagSalesFields: FieldDef[] = [
-  { key: 'teaBags25', label: 'Tea Bags 25s' },
-  { key: 'teaBags50', label: 'Tea Bags 50s' },
-  { key: 'teaBags100', label: 'Tea Bags 100s' },
-  { key: 'teaBags200', label: 'Tea Bags 200s' },
-  { key: 'salesTeaBags', label: 'Sales-Tea Bags (packs)' },
-]
-
-const specialtySalesFields: FieldDef[] = [
-  { key: 'greenTea100', label: 'Green Tea 100g' },
-  { key: 'greenTea200', label: 'Green Tea 200g' },
-  { key: 'tezdum250', label: 'Tezdum 250g' },
-  { key: 'flavored150', label: 'Flavored Tea 150g' },
-  { key: 'salesSpecialty', label: 'Sales-Specialty (Kg)' },
-]
-
-const stockDanedarFields: FieldDef[] = [
-  { key: 'stockDanedar90', label: 'Danedar 90g' },
-  { key: 'stockDanedar190', label: 'Danedar 190g' },
-  { key: 'stockDanedar475', label: 'Danedar 475g' },
-  { key: 'stockDanedar900', label: 'Danedar 900g' },
-  { key: 'stockFamilyPack900', label: 'Family Pack 900g' },
-  { key: 'stockFamilyCarton5', label: 'Family Carton 5x475g' },
-  { key: 'stockBulkTea25', label: 'Bulk Tea 2.5kg' },
-]
-
-const stockTeaBagFields: FieldDef[] = [
-  { key: 'stockTeaBags25', label: 'Tea Bags 25s' },
-  { key: 'stockTeaBags50', label: 'Tea Bags 50s' },
-  { key: 'stockTeaBags100', label: 'Tea Bags 100s' },
-  { key: 'stockTeaBags200', label: 'Tea Bags 200s' },
-  { key: 'stockGreenTea100', label: 'Green Tea 100g' },
-  { key: 'stockTezdum250', label: 'Tezdum 250g' },
-]
-
-const STOCK_OPTIONS = ['In Stock', 'Out of Stock', 'New Out of Stock'] as const
+import {
+  competitiveFields,
+  danedarSalesFields,
+  DEFAULT_OTHER_BRANDS,
+  interceptionFields,
+  SESSION_KEYS,
+  specialtySalesFields,
+  STOCK_OPTIONS,
+  stockDanedarFields,
+  stockTeaBagFields,
+  teaBagSalesFields,
+  whyNotFields,
+  type FieldDef,
+  type OtherBrandRow,
+} from '../../lib/baReport'
 
 function emptyNumeric(fields: FieldDef[]) {
   return Object.fromEntries(fields.map((f) => [f.key, ''])) as Record<string, string>
@@ -200,7 +145,7 @@ export function BaDailySalesPage() {
 
   function handleContinue(e: FormEvent) {
     e.preventDefault()
-    sessionStorage.setItem('ba-daily-sales', JSON.stringify(values))
+    sessionStorage.setItem(SESSION_KEYS.sales, JSON.stringify(values))
     navigate('/ba/other-brands')
   }
 
@@ -305,7 +250,7 @@ export function BaStockReportPage() {
     e.preventDefault()
     if (!allFilled) return
     checkOut()
-    sessionStorage.setItem('ba-stock-report', JSON.stringify(stock))
+    sessionStorage.setItem(SESSION_KEYS.stock, JSON.stringify(stock))
     navigate('/ba/daily-sales')
   }
 
@@ -313,7 +258,7 @@ export function BaStockReportPage() {
     <form onSubmit={handleContinue} className="space-y-4 bg-[#f7f4ec] p-4 pb-8">
       <PageChrome
         title="Stock Report"
-        subtitle="Mark In Stock, Out of Stock, or New Out of Stock for each SKU"
+        subtitle="Mark In Stock, Out of Stock, or Near Out of Stock for each SKU"
         onBack={() => navigate('/ba/home')}
       />
 
@@ -350,17 +295,6 @@ export function BaStockReportPage() {
   )
 }
 
-type OtherBrandRow = { id: string; name: string; price: string }
-
-const DEFAULT_OTHER_BRANDS: OtherBrandRow[] = [
-  { id: '1', name: 'Lipton 190g', price: '' },
-  { id: '2', name: 'Lipton 475g', price: '' },
-  { id: '3', name: 'Vital 190g', price: '' },
-  { id: '4', name: 'Vital 475g', price: '' },
-  { id: '5', name: 'Supreme 190g', price: '' },
-  { id: '6', name: 'Supreme Tea Bags 50s', price: '' },
-]
-
 export function BaOtherBrandsPage() {
   const navigate = useNavigate()
   const { markReportSubmitted } = useBaShift()
@@ -377,7 +311,7 @@ export function BaOtherBrandsPage() {
     e.preventDefault()
     if (!canSubmit) return
     const payload = rows.filter((r) => r.name.trim() || r.price.trim())
-    sessionStorage.setItem('ba-other-brands', JSON.stringify(payload))
+    sessionStorage.setItem(SESSION_KEYS.otherBrands, JSON.stringify(payload))
     markReportSubmitted()
     setSubmitted(true)
   }
