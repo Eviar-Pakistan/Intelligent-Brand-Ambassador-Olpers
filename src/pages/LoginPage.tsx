@@ -4,6 +4,7 @@ import { roleMeta, useRole } from '../context/AppContext'
 import { useBrand } from '../context/BrandContext'
 import { Button } from '../components/ui'
 import { authenticate, emailInUse, signIn, signOut } from '../lib/supervisors'
+import { authenticateBa, baEmailInUse, baSignIn, baSignOut } from '../lib/baAccounts'
 
 export function LoginPage() {
   const navigate = useNavigate()
@@ -29,8 +30,22 @@ export function LoginPage() {
       return
     }
 
+    // An email that belongs to a Brand Ambassador must sign in with their password
+    if (baEmailInUse(email)) {
+      const account = authenticateBa(email, password)
+      if (!account) {
+        setError('Incorrect email or password.')
+        return
+      }
+      setRole('ba')
+      baSignIn(account.id)
+      navigate(roleMeta.ba.home)
+      return
+    }
+
     // Anyone else enters the Head Office demo, as before
     signOut()
+    baSignOut()
     setRole('headOffice')
     navigate(roleMeta.headOffice.home)
   }
