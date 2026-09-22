@@ -7,6 +7,7 @@ import {
   Card,
   Modal,
   PageHeader,
+  PasswordField,
   ProgressRing,
   ScoreBars,
   SearchInput,
@@ -51,25 +52,6 @@ const timeFieldClass =
 
 const modalFieldClass =
   'w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none focus:border-brand-500'
-
-function PasswordField({ value, onChange }: { value: string; onChange: (v: string) => void }) {
-  return (
-    <label className="block text-sm">
-      <span className="mb-1 block font-medium text-slate-700">Password *</span>
-      <div className="flex gap-2">
-        <input
-          className={`${modalFieldClass} font-mono`}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-        />
-        <Button type="button" variant="secondary" onClick={() => onChange(generatePassword())}>
-          Generate
-        </Button>
-      </div>
-      <span className="mt-1 block text-xs text-slate-400">At least 6 characters. You will see it once after saving.</span>
-    </label>
-  )
-}
 
 /** The BA's sign-in details, shown once — passwords are stored hashed and cannot be looked up later. */
 function CredentialsModal({ credentials, onClose }: { credentials: Credentials | null; onClose: () => void }) {
@@ -170,6 +152,10 @@ function CreateAmbassadorModal({
           value={form.password}
           onChange={(password) => {
             setForm({ ...form, password })
+            setError(null)
+          }}
+          onGenerate={() => {
+            setForm({ ...form, password: generatePassword() })
             setError(null)
           }}
         />
@@ -343,6 +329,10 @@ function ManageLoginModal({ account, onClose, onSaved }: { account: BaAccount | 
             value={current.password}
             onChange={(password) => {
               setDraft({ ...current, password })
+              setError(null)
+            }}
+            onGenerate={() => {
+              setDraft({ ...current, password: generatePassword() })
               setError(null)
             }}
           />

@@ -8,6 +8,7 @@ import {
   useState,
   type ReactNode,
 } from 'react'
+import tapalTrainingVideo from '../assets/Tapal.mp4'
 
 export type AssessmentQuestion = {
   id: string
@@ -22,6 +23,8 @@ export type TrainingModule = {
   videoUrl: string
   questions: AssessmentQuestion[]
   createdAt: string
+  /** Bundled with the app — always present, and cannot be removed from the training list. */
+  builtin?: boolean
 }
 
 type TrainingContentContextValue = {
@@ -35,26 +38,34 @@ type TrainingContentContextValue = {
 
 const TrainingContentContext = createContext<TrainingContentContextValue | null>(null)
 
-const seedModules: TrainingModule[] = [
-  {
-    id: 'tm-seed-1',
-    title: 'Tapal product knowledge',
-    description: 'Core talking points for Tapal Tea benefits and objections.',
-    videoName: 'tapal-product-intro.mp4',
-    videoUrl: '',
-    questions: [
-      {
-        id: 'q1',
-        prompt: 'What is the primary health benefit to highlight first?',
-      },
-      {
-        id: 'q2',
-        prompt: 'When a shopper says they always buy another tea brand, how should you respond?',
-      },
-    ],
-    createdAt: new Date().toISOString(),
-  },
-]
+/**
+ * Shipped with the app (a real file in src/assets, bundled at build time), not an upload — so
+ * it is there for every ambassador on every device, and survives a browser's storage being
+ * cleared. It cannot be deleted from the Training content page.
+ */
+const BUILTIN_MODULE: TrainingModule = {
+  id: 'tm-builtin-tapal',
+  title: 'Tapal Tea knowledge',
+  description: 'The official Tapal Tea introduction video every ambassador must watch.',
+  videoName: 'Tapal.mp4',
+  videoUrl: tapalTrainingVideo,
+  questions: [
+    {
+      id: 'q-builtin-1',
+      prompt: 'Aap tapal tea kay baray mai kia janta hain?',
+    },
+  ],
+  createdAt: '2026-01-01T00:00:00.000Z',
+  builtin: true,
+}
+
+const seedModules: TrainingModule[] = [BUILTIN_MODULE]
+
+/** Makes sure the built-in module is always in the list, using the bundled asset — never a stored copy. */
+function withBuiltin(list: TrainingModule[]): TrainingModule[] {
+  const rest = list.filter((m) => m.id !== BUILTIN_MODULE.id && !m.builtin)
+  return [BUILTIN_MODULE, ...rest]
+}
 
 // ─── Persistence ─────────────────────────────────────────────────────────────
 // Module text lives in localStorage; the video files live in IndexedDB. Together they let a
@@ -103,7 +114,8 @@ export function TrainingContentProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     let cancelled = false
-    const stored = readStoredModules()
+    // the built-in module is never read from storage — only ones the user uploaded
+    const stored = readStoredModules()?.filter((m) => !m.builtin && m.id !== BUILTIN_MODULE.id) ?? null
     if (!stored) {
       hydrated.current = true
       return
@@ -124,7 +136,7 @@ export function TrainingContentProvider({ children }: { children: ReactNode }) {
     ).then((restored) => {
       if (cancelled) return
       hydrated.current = true
-      setModules(restored)
+      setModules(withBuiltin(restored))
     })
     return () => {
       cancelled = true
@@ -134,7 +146,10 @@ export function TrainingContentProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!hydrated.current) return
     try {
-      const meta: StoredModule[] = modules.map(({ videoUrl, ...m }) => ({ ...m, hasVideo: !!videoUrl }))
+      // the built-in module is bundled, not uploaded — don't persist it as if it were
+      const meta: StoredModule[] = modules
+        .filter((m) => !m.builtin)
+        .map(({ videoUrl, ...m }) => ({ ...m, hasVideo: !!videoUrl }))
       localStorage.setItem(META_KEY, JSON.stringify(meta))
     } catch {
       // storage unavailable — modules stay in memory for this session
@@ -156,10 +171,11 @@ export function TrainingContentProvider({ children }: { children: ReactNode }) {
   )
 
   const removeModule = useCallback((id: string) => {
-    deleteVideo(id).catch(() => {})
     setModules((prev) => {
       const target = prev.find((m) => m.id === id)
-      if (target?.videoUrl) URL.revokeObjectURL(target.videoUrl)
+      if (!target || target.builtin) return prev // the built-in module can't be removed
+      deleteVideo(id).catch(() => {})
+      if (target.videoUrl) URL.revokeObjectURL(target.videoUrl)
       return prev.filter((m) => m.id !== id)
     })
   }, [])

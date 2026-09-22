@@ -180,6 +180,7 @@ export function TrainingManagerPage() {
                     <Video size={15} className="text-brand-600" />
                     <span className="font-semibold text-slate-900">{m.title}</span>
                     <StatusBadge status="Training" />
+                    {m.builtin && <StatusBadge status="Built-in" />}
                   </div>
                   {m.description && (
                     <p className="mt-1 text-sm text-slate-500">{m.description}</p>
@@ -203,9 +204,13 @@ export function TrainingManagerPage() {
                     />
                   )}
                 </div>
-                <Button size="sm" variant="ghost" onClick={() => removeModule(m.id)}>
-                  <Trash2 size={14} /> Remove
-                </Button>
+                {m.builtin ? (
+                  <span className="shrink-0 text-xs text-slate-400">Built in · always available</span>
+                ) : (
+                  <Button size="sm" variant="ghost" onClick={() => removeModule(m.id)}>
+                    <Trash2 size={14} /> Remove
+                  </Button>
+                )}
               </div>
             ))}
           </div>
