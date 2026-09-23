@@ -3,7 +3,7 @@ import { useState, type ReactNode } from 'react'
 import { Button } from '../../components/ui'
 import { useDemo } from '../../context/AppContext'
 import { useBrand } from '../../context/BrandContext'
-import { Gift, Leaf, Lock, Percent, Sparkles, Ticket } from 'lucide-react'
+import { Check, Gift, Leaf, Lock, Percent, Sparkles, Ticket } from 'lucide-react'
 import { productCategories, selectionReasons, surveyOptions } from './shopperData'
 import { getShopperStore } from '../../lib/storeRegistry'
 
@@ -313,12 +313,16 @@ export function ShopperSurveyPage() {
   const [gender, setGender] = useState<string | null>(null)
   const [age, setAge] = useState('')
   const [selected, setSelected] = useState<string | null>(null)
-  const [reason, setReason] = useState<string | null>(null)
+  const [reasons, setReasons] = useState<string[]>([])
   const [consent, setConsent] = useState(true)
 
   const profileReady = name.trim() !== '' && phone.trim() !== '' && gender != null && age.trim() !== ''
   const canContinue =
-    step === 1 ? profileReady : step === 2 ? selected != null : reason != null && consent
+    step === 1 ? profileReady : step === 2 ? selected != null : reasons.length > 0 && consent
+
+  function toggleReason(opt: string) {
+    setReasons((current) => (current.includes(opt) ? current.filter((item) => item !== opt) : [...current, opt]))
+  }
 
   return (
     <div className="flex min-h-[calc(100dvh-4rem)] flex-col p-4 sm:p-5">
@@ -368,10 +372,16 @@ export function ShopperSurveyPage() {
       {step === 3 && (
         <>
           <h2 className="text-xl font-bold">Reason for selection</h2>
-          <p className="mt-2 text-sm text-slate-500">Why did you choose this milk?</p>
+          <p className="mt-2 text-sm text-slate-500">Why did you choose this milk? Select all that apply.</p>
           <div className="mt-6 space-y-3">
             {selectionReasons.map((opt) => (
-              <SurveyChoice key={opt} label={opt} selected={reason === opt} onSelect={() => setReason(opt)} />
+              <SurveyChoice
+                key={opt}
+                label={opt}
+                multiple
+                selected={reasons.includes(opt)}
+                onSelect={() => toggleReason(opt)}
+              />
             ))}
           </div>
           <label className="mt-6 flex items-start gap-2 text-xs text-slate-500">
@@ -439,10 +449,12 @@ function SurveyChoice({
   label,
   selected,
   onSelect,
+  multiple = false,
 }: {
   label: string
   selected: boolean
   onSelect: () => void
+  multiple?: boolean
 }) {
   return (
     <button
@@ -453,11 +465,16 @@ function SurveyChoice({
       }`}
     >
       <span
-        className={`flex h-4 w-4 items-center justify-center rounded-full border ${
-          selected ? 'border-brand-500' : 'border-slate-300'
-        }`}
+        className={`flex h-4 w-4 shrink-0 items-center justify-center border ${
+          multiple ? 'rounded' : 'rounded-full'
+        } ${selected ? (multiple ? 'border-brand-500 bg-brand-500' : 'border-brand-500') : 'border-slate-300'}`}
       >
-        {selected && <span className="h-2 w-2 rounded-full bg-brand-500" />}
+        {selected &&
+          (multiple ? (
+            <Check className="text-white" size={12} strokeWidth={3} />
+          ) : (
+            <span className="h-2 w-2 rounded-full bg-brand-500" />
+          ))}
       </span>
       {label}
     </button>
