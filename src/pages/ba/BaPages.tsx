@@ -846,19 +846,19 @@ export function BaPerformancePage() {
       <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-navy-800 to-brand-700 p-5 text-white shadow-lg shadow-navy-900/25">
         <div className="flex items-start justify-between">
           <div>
-            <div className="text-xs font-semibold tracking-wide text-gold-400 uppercase">Your rank</div>
+            <div className="text-xs font-semibold tracking-wide text-white uppercase">Your rank</div>
             <div className="mt-1 flex items-baseline gap-1">
-              <span className="text-5xl font-black text-gold-400">#{rank}</span>
+              <span className="text-5xl font-black text-white">#{rank}</span>
               <span className="text-sm text-white/80">Lahore</span>
             </div>
           </div>
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gold-500/20 ring-2 ring-gold-400/40">
-            <Trophy className="text-gold-400" size={24} />
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 ring-2 ring-white/40">
+            <Trophy className="text-white" size={24} />
           </div>
         </div>
         <div className="mt-4 rounded-xl bg-white/10 px-3 py-2.5 backdrop-blur-sm">
           <div className="text-[10px] font-medium text-white/70 uppercase">Earned</div>
-          <div className="mt-0.5 text-lg font-bold text-gold-400">{formatPkr(totalPkr)}</div>
+          <div className="mt-0.5 text-lg font-bold text-white">{formatPkr(totalPkr)}</div>
         </div>
       </div>
 
