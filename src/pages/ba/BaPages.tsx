@@ -442,24 +442,7 @@ export function BaHomePage() {
           <BaGoalStat label="Conversions" value="80%" />
           <BaGoalStat label="Conversations" value="40/50" />
         </div>
-        <div className="mt-5 flex items-end justify-around gap-3">
-          {brand.baGoalProducts.map((product, index) => (
-            <div
-              key={`${product.alt}-${index}`}
-              className="flex h-[4.5rem] w-[4.5rem] items-center justify-center overflow-hidden rounded-full bg-[#f7f4ec] p-1.5 shadow-inner"
-            >
-              <img
-                src={product.src}
-                alt={product.alt}
-                className="h-full w-full object-contain"
-                style={{
-                  objectPosition: product.position ?? 'center',
-                  transform: product.scale ? `scale(${product.scale})` : undefined,
-                }}
-              />
-            </div>
-          ))}
-        </div>
+       
       </div>
     </div>
   )
