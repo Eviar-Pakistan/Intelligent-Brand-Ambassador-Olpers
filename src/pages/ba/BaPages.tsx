@@ -13,7 +13,6 @@ import {
   Upload,
 } from 'lucide-react'
 import { buildIncentiveRoster, formatPkr } from '../../lib/incentives'
-import { useBrand } from '../../context/BrandContext'
 import { formatDate, formatTime, useBaShift } from '../../context/BaShiftContext'
 import { useTrainingContent } from '../../context/TrainingContentContext'
 import { downloadBaReportTemplate, parseBaReportFile, saveBaReport } from '../../lib/baReport'
@@ -48,7 +47,6 @@ function initialsOf(name: string) {
 }
 
 export function BaHomePage() {
-  const { brand } = useBrand()
   const { account } = useBaSession()
   const baName = account?.name ?? 'Brand Ambassador'
   const navigate = useNavigate()
