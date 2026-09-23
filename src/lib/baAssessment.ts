@@ -56,8 +56,8 @@ const STOP_WORDS = new Set(
 const FILLERS = new Set(['um', 'umm', 'uh', 'uhh', 'er', 'hmm', 'aa', 'aah', 'ah', 'like'])
 const POSITIVE = new Set(
   (
-    'good great best healthy health fresh love quality delicious tasty aroma rich premium ' +
-    'trusted happy enjoy better perfect favourite favorite natural pure strong'
+    'good great best healthy health fresh love quality delicious tasty creamy calcium protein ' +
+    'trusted happy enjoy better perfect favourite favorite natural pure strong milk family litre'
   ).split(' '),
 )
 const NEGATIVE = new Set('bad worst poor hate expensive cheap weak problem difficult never'.split(' '))

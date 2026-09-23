@@ -57,9 +57,10 @@ function VideoStep({ account, module }: { account: BaAccount; module: TrainingMo
 
   return (
     <div className="space-y-4 py-4">
-      <StepCard step="Step 1 · Training" title="Watch the BA training video">
+      <StepCard step="Step 1 · Training" title="Watch the Olpers training video">
         <p className="mt-2 text-base text-slate-500">
-          Hi {account.name}. Watch the full video, then continue to the verbal assessment.
+          Hi {account.name}. Watch the full Olpers milk video
+          {module?.title ? ` — ${module.title}` : ''}, then continue to the verbal assessment.
         </p>
       </StepCard>
 

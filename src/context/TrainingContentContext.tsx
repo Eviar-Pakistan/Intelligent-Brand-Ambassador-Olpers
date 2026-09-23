@@ -52,7 +52,19 @@ const BUILTIN_MODULE: TrainingModule = {
   questions: [
     {
       id: 'q-builtin-1',
-      prompt: 'Aap tapal tea kay baray mai kia janta hain?',
+      prompt: 'Aap Olpers milk ke baray mein kya jante hain?',
+    },
+    {
+      id: 'q-builtin-2',
+      prompt: 'Olpers Full Cream Milk roz marra ke liye kyun munasib hai?',
+    },
+    {
+      id: 'q-builtin-3',
+      prompt: 'Ek family of four ke liye kaun sa pack behtar hai — Olpers 1L ya 1.5L?',
+    },
+    {
+      id: 'q-builtin-4',
+      prompt: 'Olpers ko Milkpak se alag kya banata hai?',
     },
   ],
   createdAt: '2026-01-01T00:00:00.000Z',

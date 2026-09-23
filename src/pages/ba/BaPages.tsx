@@ -565,7 +565,7 @@ function BaTrainingLibrary() {
   const [qIndex, setQIndex] = useState(0)
   const [videoAnswer, setVideoAnswer] = useState('')
 
-  const [scenarioIndex, setScenarioIndex] = useState(1)
+  const [scenarioIndex, setScenarioIndex] = useState(0)
   const [answer, setAnswer] = useState('')
   const [submitted, setSubmitted] = useState(false)
 
