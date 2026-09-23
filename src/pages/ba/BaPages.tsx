@@ -17,7 +17,8 @@ import { useBrand } from '../../context/BrandContext'
 import { formatDate, formatTime, useBaShift } from '../../context/BaShiftContext'
 import { useTrainingContent } from '../../context/TrainingContentContext'
 import { downloadBaReportTemplate, parseBaReportFile, saveBaReport } from '../../lib/baReport'
-import { Modal } from '../../components/ui'
+import { Modal, ProgressRing } from '../../components/ui'
+import { analyzeAnswer, summarizeAssessment, type AnswerMetrics } from '../../lib/baAssessment'
 import { useBaSession } from '../../lib/baAccounts'
 import { BaOnboarding } from './BaOnboarding'
 
@@ -550,6 +551,71 @@ const trainingScenarios = [
 
 const TRAINING_TOTAL = trainingScenarios.length
 
+function PracticeMetric({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-xl bg-slate-50 px-3.5 py-3">
+      <div className="text-xs text-slate-500">{label}</div>
+      <div className="mt-0.5 text-lg font-bold text-slate-900">{value}</div>
+    </div>
+  )
+}
+
+function PracticeAnalytics({
+  answers,
+  onAgain,
+}: {
+  answers: AnswerMetrics[]
+  onAgain: () => void
+}) {
+  const result = summarizeAssessment(answers)
+
+  return (
+    <div className="mx-auto w-full max-w-md flex-1 space-y-4">
+      <section className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-black/5">
+        <div className="text-xs font-semibold tracking-wide text-slate-500 uppercase">Practice results</div>
+        <h1 className="mt-1 text-xl font-bold text-slate-900">Answer analytics</h1>
+        <div className="mt-4 flex justify-center">
+          <ProgressRing value={result.quality} size={132} stroke={12} color="#047857" label="Quality" />
+        </div>
+        <div className="mt-5 grid grid-cols-2 gap-2.5">
+          <PracticeMetric label="Communication" value={`${result.communication}/100`} />
+          <PracticeMetric label="Question relevance" value={`${result.relevance}%`} />
+          <PracticeMetric label="Training alignment" value={`${result.alignment}%`} />
+          <PracticeMetric label="WPM" value={String(result.wpm)} />
+          <PracticeMetric label="Nervousness" value={`${result.nervousness}%`} />
+          <PracticeMetric label="Mood" value={result.mood} />
+        </div>
+      </section>
+
+      {answers.length > 0 && (
+        <section className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-black/5">
+          <h2 className="text-sm font-bold text-slate-900">Answers</h2>
+          <ol className="mt-3 space-y-3">
+            {answers.map((a, i) => (
+              <li key={`${a.questionId}-${i}`} className="border-b border-slate-100 pb-3 last:border-0 last:pb-0">
+                <div className="text-xs font-semibold text-slate-500 uppercase">Question {i + 1}</div>
+                <div className="mt-0.5 text-sm font-medium text-slate-900">{a.prompt}</div>
+                <div className="mt-1 text-xs text-slate-500">
+                  {a.words} words · {a.wpm} wpm · communication {a.communication}/100
+                </div>
+                {a.transcript && <p className="mt-1.5 text-xs text-slate-600 italic">“{a.transcript}”</p>}
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+
+      <button
+        type="button"
+        onClick={onAgain}
+        className="w-full rounded-2xl bg-navy-900 py-3.5 text-base font-semibold text-white shadow-md shadow-navy-900/20 transition hover:bg-brand-600"
+      >
+        Practice again
+      </button>
+    </div>
+  )
+}
+
 export function BaTrainingPage() {
   const { account } = useBaSession()
   // A BA still onboarding goes through the video + verbal assessment; once certified,
@@ -564,6 +630,9 @@ function BaTrainingLibrary() {
   const [moduleIndex, setModuleIndex] = useState(0)
   const [qIndex, setQIndex] = useState(0)
   const [videoAnswer, setVideoAnswer] = useState('')
+  const [practiceAnswers, setPracticeAnswers] = useState<AnswerMetrics[]>([])
+  const [showAnalytics, setShowAnalytics] = useState(false)
+  const questionStarted = useRef(Date.now())
 
   const [scenarioIndex, setScenarioIndex] = useState(0)
   const [answer, setAnswer] = useState('')
@@ -572,6 +641,10 @@ function BaTrainingLibrary() {
   const scenario = trainingScenarios[scenarioIndex]
   const module = modules[moduleIndex]
   const question = module?.questions[qIndex]
+
+  useEffect(() => {
+    questionStarted.current = Date.now()
+  }, [module?.id, qIndex])
 
   function submitAnswer() {
     if (answer.trim().length < 8) return
@@ -585,18 +658,33 @@ function BaTrainingLibrary() {
     setSubmitted(false)
   }
 
+  function restartPractice() {
+    setPracticeAnswers([])
+    setModuleIndex(0)
+    setQIndex(0)
+    setVideoAnswer('')
+    setShowAnalytics(false)
+  }
+
   function nextQuestion() {
-    if (!module || videoAnswer.trim().length < 4) return
+    if (!module || !question || videoAnswer.trim().length < 4) return
+    const durationSec = Math.max(1, (Date.now() - questionStarted.current) / 1000)
+    const metrics = analyzeAnswer({
+      questionId: question.id,
+      prompt: question.prompt,
+      reference: `${module.title} ${module.description} ${module.questions.map((q) => q.prompt).join(' ')}`,
+      durationSec,
+      speechSec: durationSec,
+      transcript: videoAnswer.trim(),
+    })
+    setPracticeAnswers((prev) => [...prev, metrics])
+    setVideoAnswer('')
+    // Stay on this module. Finishing its questions opens analytics instead of the next product module.
     if (qIndex >= module.questions.length - 1) {
-      if (moduleIndex < modules.length - 1) {
-        setModuleIndex((i) => i + 1)
-        setQIndex(0)
-        setVideoAnswer('')
-      }
+      setShowAnalytics(true)
       return
     }
     setQIndex((i) => i + 1)
-    setVideoAnswer('')
   }
 
   return (
@@ -623,7 +711,9 @@ function BaTrainingLibrary() {
       </div>
 
       {mode === 'video' ? (
-        modules.length === 0 || !module ? (
+        showAnalytics ? (
+          <PracticeAnalytics answers={practiceAnswers} onAgain={restartPractice} />
+        ) : modules.length === 0 || !module ? (
           <div className="flex flex-1 items-center justify-center text-center text-sm text-slate-500">
             No training videos published yet.
           </div>
@@ -667,9 +757,7 @@ function BaTrainingLibrary() {
                   onClick={nextQuestion}
                   className="mt-4 w-full rounded-2xl bg-navy-900 py-3.5 text-base font-semibold text-white shadow-md shadow-navy-900/20 transition enabled:hover:bg-brand-600 disabled:cursor-not-allowed disabled:opacity-45"
                 >
-                  {qIndex >= module.questions.length - 1 && moduleIndex >= modules.length - 1
-                    ? 'Complete'
-                    : 'Next question'}
+                  {qIndex >= module.questions.length - 1 ? 'See analytics' : 'Next question'}
                 </button>
               </section>
             )}
