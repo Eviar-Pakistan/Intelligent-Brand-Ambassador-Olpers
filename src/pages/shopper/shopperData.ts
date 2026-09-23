@@ -11,3 +11,12 @@ export const surveyOptions = [
   'Nestlé Milk',
   'Other / Local brand',
 ]
+
+export const selectionReasons = [
+  'Better taste',
+  'Creamier milk',
+  'Good for the family',
+  'Better price',
+  'More nutrition',
+  'Always available',
+]
