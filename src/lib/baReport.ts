@@ -13,13 +13,13 @@ export const interceptionFields: FieldDef[] = [
   { key: 'totalInterceptions', label: 'Total Interceptions' },
   { key: 'productiveCalls', label: 'Productive Calls' },
   { key: 'nonProductiveCalls', label: 'Non-Productive Calls' },
-  { key: 'totalSalesKg', label: 'Total Sales (Kg)' },
+  { key: 'totalSalesKg', label: 'Total Sales (Litres)' },
 ]
 
 export const competitiveFields: FieldDef[] = [
-  { key: 'lipton', label: 'Lipton' },
-  { key: 'vital', label: 'Vital' },
-  { key: 'supreme', label: 'Supreme' },
+  { key: 'lipton', label: 'Milkpak' },
+  { key: 'vital', label: 'Nestlé' },
+  { key: 'supreme', label: 'Haleeb' },
   { key: 'others', label: 'Others' },
 ]
 
@@ -30,75 +30,75 @@ export const whyNotFields: FieldDef[] = [
 ]
 
 export const danedarSalesFields: FieldDef[] = [
-  { key: 'danedar90', label: 'Danedar 90g' },
-  { key: 'danedar190', label: 'Danedar 190g' },
-  { key: 'danedar475', label: 'Danedar 475g' },
-  { key: 'danedar900', label: 'Danedar 900g' },
-  { key: 'familyPack900', label: 'Family Pack 900g' },
-  { key: 'familyCarton5', label: 'Family Carton 5x475g' },
-  { key: 'bulkTea25', label: 'Bulk Tea 2.5kg' },
-  { key: 'salesDanedar', label: 'Sales-Danedar (Kg)' },
+  { key: 'danedar90', label: 'Olpers 250ml' },
+  { key: 'danedar190', label: 'Olpers 1L' },
+  { key: 'danedar475', label: 'Olpers 1.5L' },
+  { key: 'danedar900', label: 'Family Pack 6×250ml' },
+  { key: 'familyPack900', label: 'Family Pack 6×1L' },
+  { key: 'familyCarton5', label: 'Carton 12×1L' },
+  { key: 'bulkTea25', label: 'Case 12×1.5L' },
+  { key: 'salesDanedar', label: 'Sales — Olpers Milk (L)' },
 ]
 
 export const teaBagSalesFields: FieldDef[] = [
-  { key: 'teaBags25', label: 'Tea Bags 25s' },
-  { key: 'teaBags50', label: 'Tea Bags 50s' },
-  { key: 'teaBags100', label: 'Tea Bags 100s' },
-  { key: 'teaBags200', label: 'Tea Bags 200s' },
-  { key: 'salesTeaBags', label: 'Sales-Tea Bags (packs)' },
+  { key: 'teaBags25', label: 'Olpers Cream 200ml' },
+  { key: 'teaBags50', label: 'Olpers Dairy Cream 200ml' },
+  { key: 'teaBags100', label: 'Flavoured Milk 180ml' },
+  { key: 'teaBags200', label: 'Chocolate Milk 180ml' },
+  { key: 'salesTeaBags', label: 'Sales — Cream (packs)' },
 ]
 
 export const specialtySalesFields: FieldDef[] = [
-  { key: 'greenTea100', label: 'Green Tea 100g' },
-  { key: 'greenTea200', label: 'Green Tea 200g' },
-  { key: 'tezdum250', label: 'Tezdum 250g' },
-  { key: 'flavored150', label: 'Flavored Tea 150g' },
-  { key: 'salesSpecialty', label: 'Sales-Specialty (Kg)' },
+  { key: 'greenTea100', label: 'Strawberry Milk 180ml' },
+  { key: 'greenTea200', label: 'Mango Milk 180ml' },
+  { key: 'tezdum250', label: 'Badam Milk 180ml' },
+  { key: 'flavored150', label: 'Olpers Kids 180ml' },
+  { key: 'salesSpecialty', label: 'Sales — Flavours (packs)' },
 ]
 
 export const stockDanedarFields: FieldDef[] = [
-  { key: 'stockDanedar90', label: 'Danedar 90g' },
-  { key: 'stockDanedar190', label: 'Danedar 190g' },
-  { key: 'stockDanedar475', label: 'Danedar 475g' },
-  { key: 'stockDanedar900', label: 'Danedar 900g' },
-  { key: 'stockFamilyPack900', label: 'Family Pack 900g' },
-  { key: 'stockFamilyCarton5', label: 'Family Carton 5x475g' },
-  { key: 'stockBulkTea25', label: 'Bulk Tea 2.5kg' },
+  { key: 'stockDanedar90', label: 'Olpers 250ml' },
+  { key: 'stockDanedar190', label: 'Olpers 1L' },
+  { key: 'stockDanedar475', label: 'Olpers 1.5L' },
+  { key: 'stockDanedar900', label: 'Family Pack 6×250ml' },
+  { key: 'stockFamilyPack900', label: 'Family Pack 6×1L' },
+  { key: 'stockFamilyCarton5', label: 'Carton 12×1L' },
+  { key: 'stockBulkTea25', label: 'Case 12×1.5L' },
 ]
 
 export const stockTeaBagFields: FieldDef[] = [
-  { key: 'stockTeaBags25', label: 'Tea Bags 25s' },
-  { key: 'stockTeaBags50', label: 'Tea Bags 50s' },
-  { key: 'stockTeaBags100', label: 'Tea Bags 100s' },
-  { key: 'stockTeaBags200', label: 'Tea Bags 200s' },
-  { key: 'stockGreenTea100', label: 'Green Tea 100g' },
-  { key: 'stockTezdum250', label: 'Tezdum 250g' },
+  { key: 'stockTeaBags25', label: 'Olpers Cream 200ml' },
+  { key: 'stockTeaBags50', label: 'Olpers Dairy Cream 200ml' },
+  { key: 'stockTeaBags100', label: 'Flavoured Milk 180ml' },
+  { key: 'stockTeaBags200', label: 'Chocolate Milk 180ml' },
+  { key: 'stockGreenTea100', label: 'Strawberry Milk 180ml' },
+  { key: 'stockTezdum250', label: 'Olpers Kids 180ml' },
 ]
 
 export const STOCK_OPTIONS = ['In Stock', 'Out of Stock', 'Near Out of Stock'] as const
 
 export const DEFAULT_OTHER_BRANDS: OtherBrandRow[] = [
-  { id: '1', name: 'Lipton 190g', price: '' },
-  { id: '2', name: 'Lipton 475g', price: '' },
-  { id: '3', name: 'Vital 190g', price: '' },
-  { id: '4', name: 'Vital 475g', price: '' },
-  { id: '5', name: 'Supreme 190g', price: '' },
-  { id: '6', name: 'Supreme Tea Bags 50s', price: '' },
+  { id: '1', name: 'Milkpak 1L', price: '' },
+  { id: '2', name: 'Milkpak 1.5L', price: '' },
+  { id: '3', name: 'Nestlé Milk 1L', price: '' },
+  { id: '4', name: 'Nestlé Milk 1.5L', price: '' },
+  { id: '5', name: 'Haleeb 1L', price: '' },
+  { id: '6', name: 'Haleeb Cream 200ml', price: '' },
 ]
 
 /** Sections in the same order as the checkout flow: Stock → Daily Sales → Other Brands. */
 const stockSections: ReportSection[] = [
-  { title: 'Tapal Danedar', fields: stockDanedarFields },
-  { title: 'Tea Bags & Specialty', fields: stockTeaBagFields },
+  { title: 'Olpers Milk', fields: stockDanedarFields },
+  { title: 'Olpers Cream & Flavours', fields: stockTeaBagFields },
 ]
 
 const salesSections: ReportSection[] = [
   { title: 'Interceptions', fields: interceptionFields },
   { title: 'Competitive User', fields: competitiveFields },
-  { title: 'Why Not Tapal', fields: whyNotFields },
-  { title: 'Tapal Danedar', fields: danedarSalesFields },
-  { title: 'Tea Bags', fields: teaBagSalesFields },
-  { title: 'Specialty', fields: specialtySalesFields },
+  { title: 'Why Not Olpers', fields: whyNotFields },
+  { title: 'Olpers Milk', fields: danedarSalesFields },
+  { title: 'Olpers Cream', fields: teaBagSalesFields },
+  { title: 'Flavoured Milk', fields: specialtySalesFields },
 ]
 
 export const SESSION_KEYS = {
@@ -137,7 +137,7 @@ export async function downloadBaReportTemplate() {
   sheet['!cols'] = [{ wch: 34 }, { wch: 26 }, { wch: 20 }, { wch: 52 }, { wch: 22 }]
 
   const instructions = XLSX.utils.aoa_to_sheet([
-    ['Tapal BA Daily Report — how to fill'],
+    ['Olpers BA Daily Report — how to fill'],
     [],
     [`1. Fill only the "Value" column (column C) on the "${TEMPLATE_SHEET}" sheet.`],
     [`2. Stock Report: every item is required. Type: ${STOCK_OPTIONS.join(' / ')}.`],
@@ -153,7 +153,7 @@ export async function downloadBaReportTemplate() {
   XLSX.utils.book_append_sheet(wb, instructions, 'Instructions')
 
   const date = new Date().toISOString().slice(0, 10)
-  XLSX.writeFile(wb, `Tapal_BA_Daily_Report_Template_${date}.xlsx`)
+  XLSX.writeFile(wb, `Olpers_BA_Daily_Report_Template_${date}.xlsx`)
 }
 
 export type ParsedBaReport = {

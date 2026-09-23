@@ -60,7 +60,7 @@ export function LoginPage() {
         />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/40" />
         <div className="relative">
-          <img src={brand.logo} alt={brand.productName} className="h-16 w-auto object-contain" />
+          <img src={brand.logo} alt={brand.productName} className="olpers-logo h-16 w-auto object-contain" />
           <h1 className="mt-8 max-w-md text-3xl font-bold leading-tight xl:text-4xl">
             Intelligent Brand Ambassador Ecosystem
           </h1>
@@ -72,7 +72,7 @@ export function LoginPage() {
       <div className="safe-bottom flex items-center justify-center bg-surface px-4 py-8 sm:px-6 sm:py-12">
         <div className="w-full max-w-md">
           <div className="mb-4 lg:mb-6 lg:hidden">
-            <img src={brand.logo} alt={brand.productName} className="h-10 w-auto object-contain sm:h-12" />
+            <img src={brand.logo} alt={brand.productName} className="olpers-logo h-10 w-auto object-contain sm:h-12" />
           </div>
 
        

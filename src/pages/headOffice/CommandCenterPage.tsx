@@ -37,7 +37,7 @@ export function CommandCenterPage() {
 
       <div>
         <h2 className="text-lg font-bold text-slate-900 sm:text-xl">Performance overview</h2>
-        <p className="text-sm text-slate-500">Tapal Tea · live Retail Command Center</p>
+        <p className="text-sm text-slate-500">Olpers · live Retail Command Center</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -55,15 +55,15 @@ export function CommandCenterPage() {
               <AreaChart data={engagementSeries}>
                 <defs>
                   <linearGradient id="eng" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#dc2626" stopOpacity={0.35} />
-                    <stop offset="100%" stopColor="#dc2626" stopOpacity={0} />
+                    <stop offset="0%" stopColor="#b11116" stopOpacity={0.35} />
+                    <stop offset="100%" stopColor="#b11116" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
                 <XAxis dataKey="day" tick={{ fontSize: 12 }} stroke="#94a3b8" />
                 <YAxis tick={{ fontSize: 12 }} stroke="#94a3b8" />
                 <Tooltip />
-                <Area type="monotone" dataKey="engagement" stroke="#dc2626" fill="url(#eng)" strokeWidth={2} />
+                <Area type="monotone" dataKey="engagement" stroke="#b11116" fill="url(#eng)" strokeWidth={2} />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -102,7 +102,7 @@ export function CommandCenterPage() {
         <Card>
           <CardHeader title="Consumer Insights" />
           <MiniBars rows={consumerInsights.preferredTea.map((x) => ({ label: x.name, value: x.value }))} />
-          <div className="mt-3 text-[11px] text-slate-400">Preferred tea · cups/day · price · taste</div>
+          <div className="mt-3 text-[11px] text-slate-400">Preferred milk · daily use · price · creaminess</div>
           <Link to="/ho/consumers" className="mt-3 inline-block text-xs font-semibold text-brand-600">
             Open full intelligence →
           </Link>

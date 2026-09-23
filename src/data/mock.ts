@@ -1,7 +1,7 @@
 export const campaign = {
-  id: 'tapal-tea',
-  name: 'Tapal Tea — Engagement & Conversion',
-  brand: 'Tapal Tea',
+  id: 'olpers',
+  name: 'Olpers — Engagement & Conversion',
+  brand: 'Olpers',
   status: 'LIVE' as const,
   start: '01 Aug 2026',
   end: '30 Sep 2026',
@@ -11,18 +11,18 @@ export const campaign = {
 export const campaigns = [
   campaign,
   {
-    id: 'premium-tea',
-    name: 'Premium Tea Push',
-    brand: 'Valley Leaf',
+    id: 'olpers-cream',
+    name: 'Olpers Cream Push',
+    brand: 'Olpers',
     status: 'PLANNING' as const,
     start: '15 Sep 2026',
     end: '15 Oct 2026',
     progress: 22,
   },
   {
-    id: 'spice-blend',
-    name: 'Heritage Spices',
-    brand: 'Masala Co',
+    id: 'olpers-family',
+    name: 'Olpers Family Pack',
+    brand: 'Olpers',
     status: 'COMPLETED' as const,
     start: '01 May 2026',
     end: '30 Jun 2026',
@@ -49,9 +49,9 @@ export const cities = [
 
 export const consumerInsights = {
   preferredTea: [
-    { name: 'Tapal', value: 42 },
-    { name: 'Lipton', value: 31 },
-    { name: 'Vital', value: 18 },
+    { name: 'Olpers', value: 42 },
+    { name: 'Milkpak', value: 31 },
+    { name: 'Nestlé', value: 18 },
     { name: 'Others', value: 9 },
   ],
   familySize: [
@@ -71,8 +71,8 @@ export const consumerInsights = {
     { name: 'Low', value: 27 },
   ],
   healthPreference: [
-    { name: 'Antioxidants', value: 38 },
-    { name: 'Taste first', value: 27 },
+    { name: 'Calcium & protein', value: 38 },
+    { name: 'Creaminess first', value: 27 },
     { name: 'Price first', value: 21 },
     { name: 'Brand loyalty', value: 14 },
   ],
@@ -90,31 +90,31 @@ export const initialConsumerStoreQuestions: ConsumerStoreQuestion[] = [
   {
     id: 'cq1',
     storeId: 12,
-    prompt: 'Which tea brand do you currently use at home?',
+    prompt: 'Which milk brand do you currently use at home?',
     responses: 312,
   },
   {
     id: 'cq2',
     storeId: 12,
-    prompt: 'How many cups of tea does your household drink daily?',
+    prompt: 'How much milk does your household use daily?',
     responses: 298,
   },
   {
     id: 'cq3',
     storeId: 12,
-    prompt: 'What matters most — taste, aroma, or price?',
+    prompt: 'What matters most — creaminess, taste, or price?',
     responses: 276,
   },
   {
     id: 'cq4',
     storeId: 7,
-    prompt: 'How often do you buy tea?',
+    prompt: 'How often do you buy milk?',
     responses: 184,
   },
   {
     id: 'cq5',
     storeId: 7,
-    prompt: 'Would you try Tapal Tea this visit?',
+    prompt: 'Would you try Olpers this visit?',
     responses: 161,
   },
   {
@@ -126,25 +126,25 @@ export const initialConsumerStoreQuestions: ConsumerStoreQuestion[] = [
   {
     id: 'cq7',
     storeId: 4,
-    prompt: 'Have you heard of Tapal Tea before?',
+    prompt: 'Have you heard of Olpers before?',
     responses: 205,
   },
   {
     id: 'cq8',
     storeId: 19,
-    prompt: 'How do you usually prepare tea at home?',
+    prompt: 'How do you usually use milk at home?',
     responses: 142,
   },
   {
     id: 'cq9',
     storeId: 19,
-    prompt: 'How price-sensitive are you when choosing tea?',
+    prompt: 'How price-sensitive are you when choosing milk?',
     responses: 138,
   },
   {
     id: 'cq10',
     storeId: 23,
-    prompt: 'What stops you from switching tea brands?',
+    prompt: 'What stops you from switching milk brands?',
     responses: 96,
   },
 ]
@@ -272,7 +272,7 @@ export const aiRecommendations = [
     store: 'Campaign-wide',
     engagement: 68,
     conversion: 32,
-    action: 'Promote Danedar 475g — highest intent among family-size households.',
+    action: 'Promote Olpers 1.5L — highest intent among family-size households.',
     severity: 'medium' as const,
   },
 ]
@@ -948,19 +948,19 @@ export const baShiftHistory: BaShiftHistoryItem[] = [
 ]
 
 export const faqs = [
-  { q: 'Is Tapal Tea healthy?', count: 842 },
+  { q: 'Is Olpers healthy?', count: 842 },
   { q: 'Why switch from other brands?', count: 631 },
   { q: 'Best pack for family of 5?', count: 418 },
-  { q: 'Good for doodh patti?', count: 390 },
+  { q: 'Good for the whole family?', count: 390 },
 ]
 
 export const trainingScenarios = [
   {
     id: 4,
     total: 10,
-    prompt: 'Why should I switch from Lipton?',
+    prompt: 'Why should I switch from Milkpak?',
     model:
-      'Lead with respect for habit, then compare taste, aroma, and brew strength, and close with a soft sample-pack trial ask.',
+      'Lead with respect for habit, then compare creaminess, nutrition, and everyday taste, and close with a soft sample trial ask.',
   },
 ]
 

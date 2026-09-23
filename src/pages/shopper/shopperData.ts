@@ -1,13 +1,13 @@
 export const productCategories = [
-  { title: 'Health Benefits', subtitle: 'A cup of wellness', emoji: '🍵' },
-  { title: 'Our Products', subtitle: 'Danedar & more', emoji: '🛒' },
-  { title: 'Why Tapal', subtitle: "Pakistan's favourite tea", emoji: '⭐' },
-  { title: 'Recipes', subtitle: 'Chai moments', emoji: '🫖' },
+  { title: 'Health Benefits', subtitle: 'A glass of nutrition', emoji: '🥛' },
+  { title: 'Our Products', subtitle: 'Milk & cream', emoji: '🛒' },
+  { title: 'Why Olpers', subtitle: "Pakistan's favourite milk", emoji: '⭐' },
+  { title: 'Recipes', subtitle: 'Milk for every meal', emoji: '🥛' },
 ]
 
 export const surveyOptions = [
-  'Tapal Tea',
-  'Lipton',
-  'Tapal Danedar',
+  'Olpers',
+  'Milkpak',
+  'Nestlé Milk',
   'Other / Local brand',
 ]

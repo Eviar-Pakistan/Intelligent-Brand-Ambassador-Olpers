@@ -1,4 +1,4 @@
-"""Parse KASHMIR_OIL_SALES Excel into baPerformance.generated.json"""
+"""Parse the Olpers sales workbook into baPerformance.generated.json"""
 from __future__ import annotations
 
 import json
@@ -9,7 +9,7 @@ from pathlib import Path
 import openpyxl
 
 ROOT = Path(__file__).resolve().parents[1]
-XLSX = ROOT / 'KASHMIR_OIL_SALES_27_AUGUST.xlsx'
+XLSX = ROOT / 'OLPERS_MILK_SALES_27_AUGUST.xlsx'
 OUT = ROOT / 'src' / 'data' / 'baPerformance.generated.json'
 
 MONTH_MAP = {
@@ -28,7 +28,7 @@ MONTH_MAP = {
     'DEC': 'December',
 }
 
-# Towns present in source Excel but outside the Kashmir programme scope
+# Towns present in source Excel but outside the Olpers programme scope
 EXCLUDED_TOWNS = {'Daska', 'Muridke'}
 
 SKU_COLUMNS = [

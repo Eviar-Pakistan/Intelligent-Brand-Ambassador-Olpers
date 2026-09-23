@@ -22,7 +22,7 @@ export function BrandMark({
 
   return (
     <div className="flex w-full items-center justify-center gap-2.5">
-      <img src={brand.logo} alt={brand.productName} className={`object-contain ${sizeClass}`} />
+      <img src={brand.logo} alt={brand.productName} className={`olpers-logo object-contain ${sizeClass}`} />
       {!compact && size === 'md' && (
         <div className="min-w-0 leading-tight">
           <div className={`text-[10px] ${onDark ? 'text-white/80' : 'text-slate-500'}`}>

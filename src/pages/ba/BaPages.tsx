@@ -475,16 +475,16 @@ function BaGoalStat({ label, value }: { label: string; value: string }) {
 
 const trainingScenarios = [
   {
-    question: 'Is Tapal good for everyday chai?',
+    question: 'Is Olpers good for everyday use?',
     score: 91,
     feedback: [
       { type: 'success' as const, text: 'Clear daily-use positioning' },
       { type: 'success' as const, text: 'Mentioned family suitability' },
-      { type: 'warning' as const, text: 'Add brew strength detail' },
+      { type: 'warning' as const, text: 'Add creaminess detail' },
     ],
   },
   {
-    question: 'Why should I switch from your current tea?',
+    question: 'Why should I switch from your current milk?',
     score: 87,
     feedback: [
       { type: 'success' as const, text: 'Benefits explained well' },
@@ -493,12 +493,12 @@ const trainingScenarios = [
     ],
   },
   {
-    question: 'Why should I switch from Lipton?',
+    question: 'Why should I switch from Milkpak?',
     score: 84,
     feedback: [
       { type: 'success' as const, text: 'Respectful comparison' },
       { type: 'success' as const, text: 'Taste angle covered' },
-      { type: 'warning' as const, text: 'Mention aroma and strength' },
+      { type: 'warning' as const, text: 'Mention creaminess in every glass' },
     ],
   },
   {
@@ -511,30 +511,30 @@ const trainingScenarios = [
     ],
   },
   {
-    question: 'Is Tapal Tea rich in antioxidants?',
+    question: 'Is Olpers rich in calcium?',
     score: 93,
     feedback: [
       { type: 'success' as const, text: 'Accurate product claim' },
       { type: 'success' as const, text: 'Simple, reassuring tone' },
-      { type: 'warning' as const, text: 'Link to overall wellness' },
+      { type: 'warning' as const, text: 'Link to everyday nutrition' },
     ],
   },
   {
-    question: 'What makes Tapal Danedar different?',
+    question: 'What makes Olpers Full Cream Milk different?',
     score: 82,
     feedback: [
-      { type: 'success' as const, text: 'Highlighted rich leaf quality' },
-      { type: 'warning' as const, text: 'Explain brew strength more clearly' },
-      { type: 'warning' as const, text: 'Use a real-life chai example' },
+      { type: 'success' as const, text: 'Highlighted rich creamy taste' },
+      { type: 'warning' as const, text: 'Explain creaminess more clearly' },
+      { type: 'warning' as const, text: 'Use a real-life family example' },
     ],
   },
   {
-    question: 'Is it good for doodh patti?',
+    question: 'Is Olpers good for the whole family?',
     score: 88,
     feedback: [
-      { type: 'success' as const, text: 'Confirmed strong-brew suitability' },
+      { type: 'success' as const, text: 'Confirmed the rich creamy taste' },
       { type: 'success' as const, text: 'Taste retention mentioned' },
-      { type: 'warning' as const, text: 'Mention milk blend aroma' },
+      { type: 'warning' as const, text: 'Mention the creamy finish' },
     ],
   },
   {
@@ -543,7 +543,7 @@ const trainingScenarios = [
     feedback: [
       { type: 'success' as const, text: 'Quality justification given' },
       { type: 'success' as const, text: 'Calm objection handling' },
-      { type: 'warning' as const, text: 'Add cost-per-cup framing' },
+      { type: 'warning' as const, text: 'Add cost-per-litre framing' },
     ],
   },
 ]
@@ -771,7 +771,7 @@ export function BaPerformancePage() {
     <div className="space-y-4 bg-[#f7f4ec] p-4 pb-6">
       <div className="text-center">
         <h2 className="text-lg font-bold text-slate-900">Rewards & Performance</h2>
-        <p className="mt-0.5 text-sm text-slate-500">This week · Tapal Tea</p>
+        <p className="mt-0.5 text-sm text-slate-500">This week · Olpers</p>
       </div>
 
       <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-navy-800 to-brand-700 p-5 text-white shadow-lg shadow-navy-900/25">

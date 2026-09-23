@@ -23,7 +23,7 @@ export function AssessmentReport({
   return (
     <div className="space-y-4">
       <section className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-black/5">
-        <div className="text-xs font-semibold tracking-wide text-slate-500 uppercase">Tapal · {name}</div>
+        <div className="text-xs font-semibold tracking-wide text-slate-500 uppercase">Olpers · {name}</div>
         <h1 className="mt-1 text-2xl font-bold text-slate-900">Assessment report</h1>
         <div className="mt-2 flex items-center gap-2">
           <StatusBadge status={result.certified ? 'Certified' : 'Rejected'} />

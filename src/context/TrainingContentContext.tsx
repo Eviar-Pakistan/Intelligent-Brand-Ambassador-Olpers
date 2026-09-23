@@ -8,7 +8,7 @@ import {
   useState,
   type ReactNode,
 } from 'react'
-import tapalTrainingVideo from '../assets/Tapal.mp4'
+import tapalTrainingVideo from '../assets/Olpers.mp4'
 
 export type AssessmentQuestion = {
   id: string
@@ -44,10 +44,10 @@ const TrainingContentContext = createContext<TrainingContentContextValue | null>
  * cleared. It cannot be deleted from the Training content page.
  */
 const BUILTIN_MODULE: TrainingModule = {
-  id: 'tm-builtin-tapal',
-  title: 'Tapal Tea knowledge',
-  description: 'The official Tapal Tea introduction video every ambassador must watch.',
-  videoName: 'Tapal.mp4',
+  id: 'tm-builtin-olpers',
+  title: 'Olpers knowledge',
+  description: 'The official Olpers introduction video every ambassador must watch.',
+  videoName: 'Olpers.mp4',
   videoUrl: tapalTrainingVideo,
   questions: [
     {

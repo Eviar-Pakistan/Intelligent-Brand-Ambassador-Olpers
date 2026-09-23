@@ -230,11 +230,11 @@ export function DesktopShell({ kind }: { kind: ShellKind }) {
         {/* Soft CSS atmosphere — no photo background */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_90%_55%_at_0%_-10%,rgba(249,176,0,0.16),transparent_55%),radial-gradient(ellipse_70%_45%_at_100%_110%,rgba(255,255,255,0.07),transparent_50%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_90%_55%_at_0%_-10%,rgba(255,255,255,0.18),transparent_55%),radial-gradient(ellipse_70%_45%_at_100%_110%,rgba(255,255,255,0.08),transparent_50%)]"
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-400/50 to-transparent"
+          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent"
         />
 
         {/* Brand lockup */}
@@ -243,7 +243,7 @@ export function DesktopShell({ kind }: { kind: ShellKind }) {
             <img
               src={brand.logo}
               alt={brand.productName}
-              className="mx-auto h-12 w-auto max-w-full object-contain sm:h-14 lg:h-16"
+              className="olpers-logo mx-auto h-12 w-auto max-w-full object-contain sm:h-14 lg:h-16"
             />
           </div>
           <button
@@ -283,7 +283,7 @@ export function DesktopShell({ kind }: { kind: ShellKind }) {
                         // Avoid transition-all — it interpolates the gradient border and flashes on deselect.
                         'group flex items-center gap-3 rounded-xl border border-transparent px-2.5 py-2 text-sm font-medium transition-colors duration-200',
                         isActive
-                          ? 'bg-[linear-gradient(rgba(255,255,255,0.12),rgba(255,255,255,0.12)),linear-gradient(to_right,rgba(249,176,0,0.85),transparent)] bg-origin-border [background-clip:padding-box,border-box] text-white'
+                          ? 'bg-[linear-gradient(rgba(255,255,255,0.16),rgba(255,255,255,0.16)),linear-gradient(to_right,rgba(255,255,255,0.95),transparent)] bg-origin-border [background-clip:padding-box,border-box] text-white'
                           : 'text-white/70 hover:bg-white/6 hover:text-white',
                       )
                     }
@@ -294,7 +294,7 @@ export function DesktopShell({ kind }: { kind: ShellKind }) {
                           className={cn(
                             'flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-all duration-200',
                             isActive
-                              ? 'bg-gold-500 text-navy-950 shadow-lg shadow-gold-500/35'
+                              ? 'bg-white text-brand-500 shadow-lg shadow-black/10'
                               : 'bg-white/8 text-white/80 group-hover:bg-white/12',
                           )}
                         >
@@ -302,7 +302,7 @@ export function DesktopShell({ kind }: { kind: ShellKind }) {
                         </span>
                         <span className="min-w-0 truncate">{label}</span>
                         {isActive && (
-                          <span className="ml-auto h-1.5 w-1.5 shrink-0 rounded-full bg-gold-400 shadow-[0_0_8px_rgba(249,176,0,0.8)]" />
+                          <span className="ml-auto h-1.5 w-1.5 shrink-0 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.85)]" />
                         )}
                       </>
                     )}
@@ -313,9 +313,9 @@ export function DesktopShell({ kind }: { kind: ShellKind }) {
           ))}
         </nav>
 
-        <div className="relative z-[1] border-t border-white/10 bg-black/20 p-3 backdrop-blur-sm">
-          <div className="mb-2 flex items-center gap-2.5 rounded-xl bg-white/8 px-2.5 py-2.5 ring-1 ring-white/10">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-gold-400 to-gold-600 text-[11px] font-bold text-navy-950 shadow-md shadow-gold-500/25">
+        <div className="relative z-[1] border-t border-white/15 bg-white/10 p-3">
+          <div className="mb-2 flex items-center gap-2.5 rounded-xl bg-white/10 px-2.5 py-2.5 ring-1 ring-white/15">
+            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[11px] font-bold text-brand-500 shadow-md">
               {meta.short}
             </div>
             <div className="min-w-0">

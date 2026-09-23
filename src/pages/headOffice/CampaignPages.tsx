@@ -8,14 +8,14 @@ export function CampaignsPage() {
     <div>
       <PageHeader
         title="Campaigns"
-        description="Multi-campaign platform — Tapal Tea is the active demo campaign"
+        description="Multi-campaign platform — Olpers is the active demo campaign"
         actions={<Button>+ New Campaign</Button>}
       />
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {campaigns.map((c) => (
           <Link
             key={c.id}
-            to={c.id === 'tapal-tea' ? '/ho/campaigns/tapal-tea' : '#'}
+            to={c.id === 'olpers' ? '/ho/campaigns/olpers' : '#'}
             className="rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
           >
             <StatusBadge status={c.status} />

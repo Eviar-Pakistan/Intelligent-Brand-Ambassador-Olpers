@@ -179,7 +179,7 @@ export function BaDailySalesPage() {
         ))}
       </Section>
 
-      <Section title="Why Not Tapal">
+      <Section title="Why Not Olpers">
         {whyNotFields.map((f) => (
           <NumberField
             key={f.key}
@@ -190,7 +190,7 @@ export function BaDailySalesPage() {
         ))}
       </Section>
 
-      <Section title="Tapal Danedar">
+      <Section title="Olpers Milk">
         {danedarSalesFields.map((f) => (
           <NumberField
             key={f.key}
@@ -201,7 +201,7 @@ export function BaDailySalesPage() {
         ))}
       </Section>
 
-      <Section title="Tea Bags">
+      <Section title="Olpers Cream">
         {teaBagSalesFields.map((f) => (
           <NumberField
             key={f.key}
@@ -212,7 +212,7 @@ export function BaDailySalesPage() {
         ))}
       </Section>
 
-      <Section title="Specialty">
+      <Section title="Flavoured Milk">
         {specialtySalesFields.map((f) => (
           <NumberField
             key={f.key}
@@ -262,7 +262,7 @@ export function BaStockReportPage() {
         onBack={() => navigate('/ba/home')}
       />
 
-      <Section title="Tapal Danedar">
+      <Section title="Olpers Milk">
         {stockDanedarFields.map((f) => (
           <StockCheckboxes
             key={f.key}
@@ -273,7 +273,7 @@ export function BaStockReportPage() {
         ))}
       </Section>
 
-      <Section title="Tea Bags & Specialty">
+      <Section title="Olpers Cream & Flavours">
         {stockTeaBagFields.map((f) => (
           <StockCheckboxes
             key={f.key}

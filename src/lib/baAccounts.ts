@@ -223,7 +223,7 @@ export async function downloadAmbassadorTemplate() {
   const wb = XLSX.utils.book_new()
   XLSX.utils.book_append_sheet(wb, sheet, SHEET)
   XLSX.utils.book_append_sheet(wb, help, 'Instructions')
-  XLSX.writeFile(wb, 'Tapal_Ambassador_Bulk_Upload_Template.xlsx')
+  XLSX.writeFile(wb, 'Olpers_Ambassador_Bulk_Upload_Template.xlsx')
 }
 
 export type ParsedAmbassadorRow = { row: number; input: BaAccountFields }
@@ -307,5 +307,5 @@ export async function downloadBaCredentials(list: { name: string; email: string;
   sheet['!cols'] = [{ wch: 24 }, { wch: 28 }, { wch: 18 }, { wch: 36 }]
   const wb = XLSX.utils.book_new()
   XLSX.utils.book_append_sheet(wb, sheet, 'Sign-in details')
-  XLSX.writeFile(wb, 'Tapal_Ambassador_Sign_In_Details.xlsx')
+  XLSX.writeFile(wb, 'Olpers_Ambassador_Sign_In_Details.xlsx')
 }

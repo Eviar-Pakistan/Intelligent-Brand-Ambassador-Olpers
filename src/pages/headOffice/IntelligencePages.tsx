@@ -167,7 +167,7 @@ export function ConsumersPage() {
       </Card>
 
       <div className="grid gap-5 lg:grid-cols-2">
-        <ChartCard title="Preferred Tea Brand" rows={consumerInsights.preferredTea} />
+        <ChartCard title="Preferred Milk Brand" rows={consumerInsights.preferredTea} />
         <ChartCard title="Family Size" rows={consumerInsights.familySize} />
         <ChartCard title="Purchase Frequency" rows={consumerInsights.purchaseFrequency} />
         <ChartCard title="Price Sensitivity" rows={consumerInsights.priceSensitivity} />
@@ -323,12 +323,12 @@ export function ReportPage() {
     <div className="mx-auto max-w-4xl space-y-5">
       <PageHeader
         title="Executive Intelligence Report"
-        description="Client-ready preview · Tapal Tea campaign"
+        description="Client-ready preview · Olpers campaign"
         actions={<Button>Export Report</Button>}
       />
       <Card>
         <div className="text-xs tracking-[0.2em] text-brand-600 uppercase">Executive Intelligence Report</div>
-        <h2 className="mt-2 text-2xl font-bold text-black sm:text-3xl">Tapal Tea</h2>
+        <h2 className="mt-2 text-2xl font-bold text-black sm:text-3xl">Olpers</h2>
         <p className="mt-1 text-slate-500">Campaign Performance · Aug–Sep 2026</p>
       </Card>
 
@@ -344,14 +344,14 @@ export function ReportPage() {
       <Section n="02" title="Consumer Profile">
         <p className="text-sm text-slate-600">
           Primary buyers are family households (3–4 members) shopping bi-weekly, with medium price
-          sensitivity and strong interest in rich taste and everyday chai moments.
+          sensitivity and strong interest in rich, creamy milk for everyday family meals.
         </p>
       </Section>
 
       <Section n="03" title="Brand Switching">
         <p className="text-sm text-slate-600">
-          Top switch drivers: taste comparison vs other tea brands, doodh patti aroma, and sample-pack
-          trial offers. Main rejection reason remains habit loyalty to Lipton.
+          Top switch drivers: creaminess versus other milk brands, taste in daily meals, and sample
+          trial offers. Main rejection reason remains habit loyalty to Milkpak.
         </p>
       </Section>
 
@@ -359,9 +359,9 @@ export function ReportPage() {
         <ChartCard
           title="SKU Interest"
           rows={[
-            { name: 'Danedar 475g', value: 48 },
-            { name: 'Tea Bags 50s', value: 32 },
-            { name: 'Danedar 190g', value: 20 },
+            { name: 'Olpers 1.5L', value: 48 },
+            { name: 'Olpers Cream 200ml', value: 32 },
+            { name: 'Olpers 1L', value: 20 },
           ]}
         />
       </Section>
@@ -381,7 +381,7 @@ export function ReportPage() {
       <Section n="06" title="AI Recommendations">
         <ol className="list-decimal space-y-2 pl-5 text-sm text-slate-700">
           <li>Increase Lahore weekend coverage</li>
-          <li>Promote Danedar 475g in family-size segments</li>
+          <li>Promote Olpers 1.5L in family-size segments</li>
           <li>Improve objection handling scripts for habit brands</li>
         </ol>
       </Section>
@@ -436,7 +436,7 @@ export function SettingsPage() {
         )}
         {section === 'Training Scenarios' && (
           <div className="mt-5 space-y-3">
-            {['Why switch from Lipton?', 'Is it good for doodh patti?', 'Which pack for family of 5?'].map((s) => (
+            {['Why switch from Milkpak?', 'Is Olpers good for the family?', 'Which pack for family of 5?'].map((s) => (
               <div key={s} className="rounded-xl border border-slate-100 bg-slate-50 px-3 py-2 text-sm">
                 {s}
               </div>

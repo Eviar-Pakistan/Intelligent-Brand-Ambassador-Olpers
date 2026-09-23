@@ -20,7 +20,7 @@ export function ShopperLandingPage() {
         <img
           src={brand.logo}
           alt={brand.productName}
-          className="h-[4.5rem] w-auto object-contain sm:h-20"
+          className="olpers-logo h-[4.5rem] w-auto object-contain sm:h-20"
         />
 
         {shopperStore && (
@@ -47,7 +47,7 @@ export function ShopperLandingPage() {
         <Link to="/shopper/survey" className="mt-2 w-full shrink-0">
           <button
             type="button"
-            className="w-full rounded-full bg-navy-900 py-3.5 text-[1.05rem] font-semibold text-gold-500 shadow-[0_10px_24px_rgba(0,77,38,0.28)] transition hover:bg-brand-600 active:scale-[0.99]"
+            className="w-full rounded-full bg-navy-900 py-3.5 text-[1.05rem] font-semibold text-white shadow-[0_10px_24px_rgba(0,77,38,0.28)] transition hover:bg-brand-600 active:scale-[0.99]"
           >
             Explore Now
           </button>
@@ -124,53 +124,46 @@ export function ShopperSpinPage() {
   }
 
   return (
-    <div className="relative flex min-h-[100dvh] flex-col overflow-hidden bg-[radial-gradient(ellipse_at_center,#dc2626_0%,#991b1b_42%,#450a0a_100%)] px-5 pb-8 pt-6 text-center text-white">
-      <div className="pointer-events-none absolute -right-16 -top-10 h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(251,191,36,0.15),transparent_70%)]" />
+    <div className="relative flex min-h-[100dvh] flex-col overflow-hidden bg-[radial-gradient(ellipse_at_center,#e15a5e_0%,#b11116_48%,#9a1418_100%)] px-5 pb-8 pt-6 text-center text-white">
+      <div className="pointer-events-none absolute -right-16 -top-10 h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(1,138,255,0.15),transparent_70%)]" />
       <div className="pointer-events-none absolute -bottom-12 -left-12 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(220,38,38,0.35),transparent_70%)]" />
-      <div className="pointer-events-none absolute left-1/2 top-[40%] h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(251,191,36,0.28),transparent_65%)] blur-2xl" />
+      <div className="pointer-events-none absolute left-1/2 top-[40%] h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(1,138,255,0.28),transparent_65%)] blur-2xl" />
 
       {!won ? (
         <div className="relative z-10 mx-auto flex w-full max-w-sm flex-1 flex-col items-center">
           <img
             src={brand.logo}
             alt={brand.productName}
-            className="h-11 w-auto object-contain drop-shadow-md"
+            className="olpers-logo h-11 w-auto object-contain drop-shadow-md"
           />
 
-          <h1
-            className="mt-3 font-display text-[2rem] font-black tracking-[0.04em] text-transparent sm:text-[2.15rem]"
-            style={{
-              backgroundImage: 'linear-gradient(180deg, #ffe566 0%, #f9b000 45%, #c98900 100%)',
-              WebkitBackgroundClip: 'text',
-              backgroundClip: 'text',
-            }}
-          >
+          <h1 className="mt-3 font-display text-[2rem] font-black tracking-[0.04em] text-white sm:text-[2.15rem]">
             SPIN & WIN
           </h1>
 
           <div className="mt-1 flex w-44 items-center gap-2">
-            <span className="h-px flex-1 bg-gradient-to-r from-transparent to-gold-500/80" />
-            <span className="h-2 w-2 rotate-45 rounded-[2px] bg-gold-500" />
-            <span className="h-px flex-1 bg-gradient-to-l from-transparent to-gold-500/80" />
+            <span className="h-px flex-1 bg-gradient-to-r from-transparent to-white/80" />
+            <span className="h-2 w-2 rotate-45 rounded-[2px] bg-white" />
+            <span className="h-px flex-1 bg-gradient-to-l from-transparent to-white/80" />
           </div>
 
           <p className="mt-2 text-sm font-medium text-white/90">{spin.subtitle}</p>
 
-          <div className="mt-4 flex w-full items-stretch justify-between gap-1 rounded-2xl border border-gold-500/50 bg-navy-950/35 px-2.5 py-2.5 backdrop-blur-sm">
+          <div className="mt-4 flex w-full items-stretch justify-between gap-1 rounded-2xl border border-white/40 bg-navy-950/35 px-2.5 py-2.5 backdrop-blur-sm">
             {spin.prizeLabels.map((label, i) => {
               const Icon = prizeIcons[i]
               return (
                 <div key={label} className="flex flex-1 flex-col items-center gap-1 px-0.5">
-                  <Icon className="text-gold-400" size={16} />
-                  <span className="text-[9px] leading-tight font-semibold text-gold-400">{label}</span>
+                  <Icon className="text-white" size={16} />
+                  <span className="text-[9px] leading-tight font-semibold text-white">{label}</span>
                 </div>
               )
             })}
           </div>
 
           <div className="relative mt-4 flex w-full flex-1 items-center justify-center">
-            <div className="pointer-events-none absolute -left-6 top-8 h-40 w-16 rotate-[-18deg] rounded-full bg-[linear-gradient(180deg,rgba(255,201,51,0.55),rgba(249,176,0,0.05))] opacity-70 blur-[2px]" />
-            <div className="pointer-events-none absolute -right-4 top-16 h-36 w-14 rotate-[22deg] rounded-full bg-[linear-gradient(180deg,rgba(255,201,51,0.5),rgba(249,176,0,0.05))] opacity-65 blur-[2px]" />
+            <div className="pointer-events-none absolute -left-6 top-8 h-40 w-16 rotate-[-18deg] rounded-full bg-[linear-gradient(180deg,rgba(1,138,255,0.55),rgba(1,138,255,0.05))] opacity-70 blur-[2px]" />
+            <div className="pointer-events-none absolute -right-4 top-16 h-36 w-14 rotate-[22deg] rounded-full bg-[linear-gradient(180deg,rgba(1,138,255,0.5),rgba(1,138,255,0.05))] opacity-65 blur-[2px]" />
 
             <div className="relative h-[min(56vw,270px)] w-[min(56vw,270px)]">
               <div className="absolute -top-1 left-1/2 z-20 -translate-x-1/2">
@@ -191,35 +184,28 @@ export function ShopperSpinPage() {
             type="button"
             onClick={doSpin}
             disabled={spinning}
-            className="mt-auto flex w-full max-w-sm items-center justify-center gap-2 rounded-full bg-gradient-to-b from-[#ffe066] via-gold-500 to-[#d99800] py-3.5 text-base font-extrabold tracking-wide text-navy-900 shadow-[0_10px_24px_rgba(249,176,0,0.35)] transition enabled:hover:brightness-105 enabled:active:scale-[0.99] disabled:opacity-80"
+            className="mt-auto flex w-full max-w-sm items-center justify-center gap-2 rounded-full bg-white py-3.5 text-base font-extrabold tracking-wide text-[#b11116] shadow-[0_10px_24px_rgba(0,0,0,0.18)] transition enabled:hover:brightness-105 enabled:active:scale-[0.99] disabled:opacity-80"
           >
-            <Leaf className="text-brand-700" size={16} />
+            <Leaf className="text-[#b11116]" size={16} />
             {spinning ? 'SPINNING...' : 'SPIN NOW'}
-            <Leaf className="text-brand-700" size={16} />
+            <Leaf className="text-[#b11116]" size={16} />
           </button>
 
-          <p className="mt-4 flex items-center justify-center gap-1.5 text-[11px] text-white/75">
-            <Lock size={12} className="text-gold-400" />
+          <p className="mt-4 flex items-center justify-center gap-1.5 text-[11px] text-white">
+            <Lock size={12} className="text-white" />
             100% Secure | Fair & Transparent
           </p>
         </div>
       ) : (
         <div className="animate-fade-up relative z-10 mx-auto flex w-full max-w-sm flex-1 flex-col items-center justify-center">
-          <img src={brand.logo} alt={brand.productName} className="mb-2 h-10 w-auto object-contain" />
-          <div className="text-xs font-semibold tracking-[0.2em] text-gold-400 uppercase">You won</div>
-          <div
-            className="mt-2 text-5xl font-black tracking-tight text-transparent"
-            style={{
-              backgroundImage: 'linear-gradient(180deg, #ffe566 0%, #f9b000 50%, #c98900 100%)',
-              WebkitBackgroundClip: 'text',
-              backgroundClip: 'text',
-            }}
-          >
+          <img src={brand.logo} alt={brand.productName} className="olpers-logo mb-2 h-10 w-auto object-contain" />
+          <div className="text-xs font-semibold tracking-[0.2em] text-white uppercase">You won</div>
+          <div className="mt-2 text-5xl font-black tracking-tight text-white">
             {spin.winAmount}
           </div>
-          <p className="mt-2 text-sm text-white/85">{spin.winDetail}</p>
-          <div className="mt-6 w-full rounded-2xl border border-gold-500/40 bg-navy-950/40 p-4 backdrop-blur">
-            <div className="text-xs text-gold-400/90">Promo code</div>
+          <p className="mt-2 text-sm text-white">{spin.winDetail}</p>
+          <div className="mt-6 w-full rounded-2xl border border-white/40 bg-navy-950/40 p-4 backdrop-blur">
+            <div className="text-xs text-white/90">Promo code</div>
             <div className="mt-1 font-mono text-2xl font-bold tracking-widest text-white">
               {spin.promoCode}
             </div>
@@ -227,7 +213,7 @@ export function ShopperSpinPage() {
           <Link to="/shopper/reward" className="mt-5 block w-full">
             <button
               type="button"
-              className="w-full rounded-full bg-gradient-to-b from-[#ffe066] via-gold-500 to-[#d99800] py-3.5 text-base font-extrabold text-navy-900 shadow-[0_10px_24px_rgba(249,176,0,0.35)]"
+              className="w-full rounded-full bg-[#018AFF] py-3.5 text-base font-extrabold text-white shadow-[0_10px_24px_rgba(1,138,255,0.35)]"
             >
               Claim Reward
             </button>
@@ -242,7 +228,7 @@ export function ShopperAiPage() {
   const [messages, setMessages] = useState<{ side: 'user' | 'bot'; text: string }[]>([
     {
       side: 'bot',
-      text: "Hi! I'm here to help you learn about Tapal Tea. The Brand Ambassador stays in control — I just assist.",
+      text: "Hi! I'm here to help you learn about Olpers. The Brand Ambassador stays in control — I just assist.",
     },
   ])
   const [input, setInput] = useState('')
@@ -255,7 +241,7 @@ export function ShopperAiPage() {
       { side: 'user', text: q },
       {
         side: 'bot',
-        text: 'Tapal Tea is Pakistan\'s favourite tea — a rich, aromatic cup for everyday moments and sharing with family.',
+        text: 'Olpers is Pakistan\'s favourite UHT milk — rich, creamy full-cream milk for everyday meals and the whole family.',
       },
     ])
     setInput('')
@@ -271,7 +257,7 @@ export function ShopperAiPage() {
         ))}
         {messages.length < 3 && (
           <div className="flex flex-wrap gap-2 pt-2">
-            {['Is it healthy?', 'Best for doodh patti?', "What's the price?", 'Which pack?'].map((q) => (
+            {['Is it healthy?', 'Good for the family?', "What's the price?", 'Which pack?'].map((q) => (
               <button
                 key={q}
                 onClick={() => send(q)}
@@ -327,9 +313,9 @@ export function ShopperSurveyPage() {
       <div className="mb-2 text-xs font-semibold tracking-wide text-slate-500 uppercase">
         Question {step} of 5
       </div>
-      <h2 className="text-xl font-bold">Which tea do you currently use?</h2>
+      <h2 className="text-xl font-bold">Which milk do you currently use?</h2>
       <p className="mt-2 text-sm text-slate-500">
-        Captures preferred tea brand, pack size, cups per day, frequency, price sensitivity & more.
+        Captures preferred milk brand, pack size, daily use, frequency, price sensitivity & more.
       </p>
       <div className="mt-6 space-y-3">
         {surveyOptions.map((opt) => (
@@ -385,8 +371,8 @@ export function ShopperRewardPage() {
   return (
     <div className="flex min-h-[calc(100dvh-4rem)] flex-col items-center justify-center bg-white px-6 py-10 text-center">
       <svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden>
-        <rect x="10" y="22" width="36" height="26" rx="3" fill="#F9B000" stroke="#1a1a1a" strokeWidth="2" />
-        <rect x="8" y="14" width="40" height="10" rx="2" fill="#FFC933" stroke="#1a1a1a" strokeWidth="2" />
+        <rect x="10" y="22" width="36" height="26" rx="3" fill="#018AFF" stroke="#1a1a1a" strokeWidth="2" />
+        <rect x="8" y="14" width="40" height="10" rx="2" fill="#018AFF" stroke="#1a1a1a" strokeWidth="2" />
         <rect x="25" y="14" width="6" height="34" fill="#E11D48" stroke="#1a1a1a" strokeWidth="1.5" />
         <path
           d="M28 14c-4-6-10-6-10 0 0 4 6 6 10 8 4-2 10-4 10-8 0-6-6-6-10 0Z"
@@ -401,7 +387,7 @@ export function ShopperRewardPage() {
         Show this to your Brand Ambassador at checkout.
       </p>
 
-      <div className="mt-7 w-full max-w-sm rounded-2xl border border-amber-200/90 bg-[#fff8eb] px-5 py-6 shadow-sm">
+      <div className="mt-7 w-full max-w-sm rounded-2xl border border-amber-200/90 bg-[#e8f4ff] px-5 py-6 shadow-sm">
         <div className="text-[11px] font-bold tracking-[0.14em] text-amber-600 uppercase">Voucher</div>
         <div className="mt-1.5 text-3xl font-black tracking-wide text-navy-900">{spin.promoCode}</div>
         <div className="mt-1.5 text-sm text-slate-600">
@@ -514,10 +500,10 @@ export function ShopperThanksPage() {
       </div>
       <h2 className="mt-5 text-2xl font-bold text-slate-900">Thank you!</h2>
       <p className="mt-2 max-w-xs text-sm text-slate-500">
-        Your feedback was received. Enjoy your reward and thank you for choosing Tapal Tea.
+        Your feedback was received. Enjoy your reward and thank you for choosing Olpers.
       </p>
       {rating != null && (
-        <div className="mt-5 rounded-2xl border border-amber-200 bg-[#fff8eb] px-5 py-3 text-sm font-semibold text-navy-900">
+        <div className="mt-5 rounded-2xl border border-amber-200 bg-[#e8f4ff] px-5 py-3 text-sm font-semibold text-navy-900">
           You rated {rating}/5{label ? ` · ${label}` : ''}
         </div>
       )}

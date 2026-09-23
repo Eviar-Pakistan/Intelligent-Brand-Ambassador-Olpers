@@ -27,8 +27,8 @@ export const chartTick = '#94a3b8'
 export const chartGrid = '#f1f5f9'
 export const chartGreen = '#dc2626'
 export const chartGreenLight = '#f87171'
-export const chartGold = '#fbbf24'
-export const categoryColors = ['#f87171', '#dc2626', '#fbbf24']
+export const chartGold = '#018AFF'
+export const categoryColors = ['#f87171', '#dc2626', '#018AFF']
 
 export const defaultChartOptions = {
   responsive: true,

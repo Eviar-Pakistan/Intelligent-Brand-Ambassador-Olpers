@@ -1,27 +1,38 @@
 @import "tailwindcss";
 
 @theme {
-  /* Tapal — red chrome (maps onto existing navy-* / brand-* classes) */
-  --color-navy-950: #450a0a;
-  --color-navy-900: #991b1b;
-  --color-navy-800: #b91c1c;
-  --color-navy-700: #dc2626;
+  /* Olpers — logo red (#b11116). Darker steps stay in the same red, not near-black. */
+  --color-navy-950: #b11116;
+  --color-navy-900: #b11116;
+  --color-navy-800: #9a1418;
+  --color-navy-700: #c4181e;
 
-  --color-brand-50: #fef2f2;
-  --color-brand-100: #fee2e2;
-  --color-brand-400: #f87171;
-  --color-brand-500: #dc2626;
-  --color-brand-600: #b91c1c;
-  --color-brand-700: #991b1b;
+  --color-brand-50: #fdf2f2;
+  --color-brand-100: #f8d6d7;
+  --color-brand-400: #e15a5e;
+  --color-brand-500: #b11116;
+  --color-brand-600: #9a1418;
+  --color-brand-700: #7a1014;
 
-  --color-gold-400: #fde68a;
-  --color-gold-500: #fbbf24;
-  --color-gold-600: #d97706;
+  --color-gold-400: #018aff;
+  --color-gold-500: #018aff;
+  --color-gold-600: #018aff;
 
-  --color-success: #b91c1c;
-  --color-warning: #fbbf24;
+  --color-amber-50: #e8f4ff;
+  --color-amber-100: #d4ebff;
+  --color-amber-200: #b3dbff;
+  --color-amber-300: #7ac4ff;
+  --color-amber-400: #3aa8ff;
+  --color-amber-500: #018aff;
+  --color-amber-600: #018aff;
+  --color-amber-700: #0174d4;
+  --color-amber-800: #015eae;
+  --color-amber-900: #014888;
+
+  --color-success: #b11116;
+  --color-warning: #018aff;
   --color-danger: #dc2626;
-  --color-surface: #faf5f5;
+  --color-surface: #faf6f6;
   --color-card: #ffffff;
   --font-sans: "Segoe UI", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Segoe UI Semibold", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
@@ -83,11 +94,16 @@ body {
   animation: spin-wheel 2.4s cubic-bezier(0.15, 0.7, 0.1, 1) forwards;
 }
 
-/* Soft gold + red accents for branded panels */
-.tapal-glow {
+.olpers-logo {
+  border: none;
+  border-radius: 6px;
+  box-shadow: none;
+  overflow: hidden;
+}
+.olpers-glow {
   background-image:
-    radial-gradient(circle at 15% 20%, rgba(251, 191, 36, 0.28), transparent 42%),
-    radial-gradient(circle at 85% 75%, rgba(185, 28, 28, 0.35), transparent 45%);
+    radial-gradient(circle at 15% 20%, rgba(1, 138, 255, 0.28), transparent 42%),
+    radial-gradient(circle at 85% 75%, rgba(177, 17, 22, 0.35), transparent 45%);
 }
 
 ::-webkit-scrollbar {
@@ -96,6 +112,6 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #e7b4b4;
+  background: #e7b4b6;
   border-radius: 999px;
 }

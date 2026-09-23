@@ -1,6 +1,6 @@
 import generated from './baPerformance.generated.json'
 
-/** Towns in source data outside the Tapal Tea programme scope */
+/** Towns in source data outside the Olpers programme scope */
 const EXCLUDED_TOWNS = new Set(['Daska', 'Muridke'])
 
 export type BaPerformanceRecord = {
@@ -63,6 +63,26 @@ export const MONTH_ORDER = [
   'November',
   'December',
 ]
+
+const OLPERS_SKU_NAMES: Record<string, string> = {
+  'Danedar 190g': 'Olpers 1L',
+  'Danedar 475g': 'Olpers 1.5L',
+  'Danedar 900g': 'Family Pack 6×250ml',
+  'Family Pack 900g': 'Family Pack 6×1L',
+  'Family Carton 5x475g': 'Carton 12×1L',
+  'Bulk Tea 2.5kg': 'Case 12×1.5L',
+  'Tea Bags 25s': 'Olpers Cream 200ml',
+  'Tea Bags 50s': 'Olpers Dairy Cream 200ml',
+  'Tea Bags 100s': 'Flavoured Milk 180ml',
+  'Green Tea 100g': 'Strawberry Milk 180ml',
+  'Green Tea 200g': 'Mango Milk 180ml',
+  'Tezdum 250g': 'Badam Milk 180ml',
+  'Flavored Tea 150g': 'Olpers Kids 180ml',
+}
+
+function olpersSkuName(sku: string) {
+  return OLPERS_SKU_NAMES[sku] ?? sku
+}
 
 const DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
@@ -226,7 +246,7 @@ export function aggregateBaPerformance(
   const skuMap = new Map<string, number>()
   for (const r of records) {
     for (const sku of r.skuSales) {
-      skuMap.set(sku.sku, (skuMap.get(sku.sku) ?? 0) + sku.sales)
+      skuMap.set(olpersSkuName(sku.sku), (skuMap.get(olpersSkuName(sku.sku)) ?? 0) + sku.sales)
     }
   }
   const topSkus = [...skuMap.entries()]
@@ -245,9 +265,9 @@ export function aggregateBaPerformance(
     salesKg,
     achievementPct: targetKg > 0 ? Math.round((salesKg / targetKg) * 100) : 0,
     categorySales: [
-      { name: 'DANEDAR', value: danedar },
+      { name: 'OLPERS MILK', value: danedar },
       { name: 'FAMILY PACK', value: familyPack },
-      { name: 'TEA BAGS', value: teaBags },
+      { name: 'CREAM', value: teaBags },
     ],
     townTargetVsSales: { town: townLabel, target: targetKg, sales: salesKg },
     weekSales,

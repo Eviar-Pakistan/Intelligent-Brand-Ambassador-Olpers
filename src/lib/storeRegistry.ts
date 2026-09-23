@@ -224,7 +224,7 @@ export async function downloadStoreTemplate() {
   const wb = XLSX.utils.book_new()
   XLSX.utils.book_append_sheet(wb, sheet, SHEET)
   XLSX.utils.book_append_sheet(wb, help, 'Instructions')
-  XLSX.writeFile(wb, 'Tapal_Store_Creation_Template.xlsx')
+  XLSX.writeFile(wb, 'Olpers_Store_Creation_Template.xlsx')
 }
 
 export type ParsedStoreRow = { row: number; input: StoreInput }
@@ -331,5 +331,5 @@ export async function downloadStoreLinks(list: Pick<Store, 'id' | 'qrCode' | 'na
   sheet['!cols'] = [{ wch: 10 }, { wch: 30 }, { wch: 16 }, { wch: 90 }]
   const wb = XLSX.utils.book_new()
   XLSX.utils.book_append_sheet(wb, sheet, 'Shopper links')
-  XLSX.writeFile(wb, 'Tapal_Store_Shopper_Links.xlsx')
+  XLSX.writeFile(wb, 'Olpers_Store_Shopper_Links.xlsx')
 }

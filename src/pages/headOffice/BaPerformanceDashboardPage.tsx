@@ -615,8 +615,8 @@ export function BaPerformanceDashboardPage() {
         <KpiCard label="Customers Intercepted" value={data.customersIntercepted.toLocaleString()} />
         <KpiCard label="Productive Calls" value={data.productiveCalls.toLocaleString()} />
         <KpiCard label="Productive %" value={`${data.productivePct}%`} />
-        <KpiCard label="Target (Kg)" value={data.targetKg.toLocaleString()} />
-        <KpiCard label="Sales (Kg)" value={data.salesKg.toLocaleString()} />
+        <KpiCard label="Target (L)" value={data.targetKg.toLocaleString()} />
+        <KpiCard label="Sales (L)" value={data.salesKg.toLocaleString()} />
         <KpiCard label="Achievement" value={`${data.achievementPct}%`} />
       </div>
 
@@ -660,7 +660,7 @@ export function BaPerformanceDashboardPage() {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:col-start-2 lg:row-start-2 lg:grid-cols-3 lg:items-stretch">
-          <ChartCard title="Week-wise sales (Kg)">
+          <ChartCard title="Week-wise sales (L)">
             <Line data={weekChart} options={weekOptions} />
           </ChartCard>
 

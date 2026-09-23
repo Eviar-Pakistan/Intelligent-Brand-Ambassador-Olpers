@@ -42,9 +42,9 @@ export const initialComplaints: Complaint[] = [
     storeName: 'Imtiaz Clifton',
     city: 'Karachi',
     category: 'Product stock',
-    subject: 'Danedar 475g out of stock on shelf',
+    subject: 'Olpers 1.5L out of stock on shelf',
     details:
-      'Shelf bay for Tapal Danedar 475g has been empty since morning. Asked store staff twice; they said refill expected tomorrow. Sampling impacted.',
+      'Shelf bay for Olpers 1.5L has been empty since morning. Asked store staff twice; they said refill expected tomorrow. Sampling impacted.',
     status: 'Open',
     createdAt: '2026-09-14T09:20:00',
     updatedAt: '2026-09-14T09:20:00',
